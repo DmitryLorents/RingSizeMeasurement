@@ -7,7 +7,10 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct RingSizeMeasurementView: View {
+    @StateObject private var model = RingSizeMeasurementViewModel()
+    
+    
     var body: some View {
         VStack {
             
@@ -17,5 +20,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    RingSizeMeasurementView()
 }

@@ -8,19 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		D98C555D2C6B507F0078A80E /* RingSizeMeasurementApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C555C2C6B507F0078A80E /* RingSizeMeasurementApp.swift */; };
-		D98C555F2C6B507F0078A80E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C555E2C6B507F0078A80E /* ContentView.swift */; };
+		D98C555F2C6B507F0078A80E /* RingSizeMeasurementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C555E2C6B507F0078A80E /* RingSizeMeasurementView.swift */; };
 		D98C55612C6B50800078A80E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D98C55602C6B50800078A80E /* Assets.xcassets */; };
 		D98C55642C6B50800078A80E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D98C55632C6B50800078A80E /* Preview Assets.xcassets */; };
 		D98C55752C6B80340078A80E /* RingSizeMeasurementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55742C6B80340078A80E /* RingSizeMeasurementViewModel.swift */; };
+		D98C55772C6B88E10078A80E /* JSONResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D98C55762C6B88E10078A80E /* JSONResponse.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D98C55592C6B507F0078A80E /* RingSizeMeasurement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RingSizeMeasurement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D98C555C2C6B507F0078A80E /* RingSizeMeasurementApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingSizeMeasurementApp.swift; sourceTree = "<group>"; };
-		D98C555E2C6B507F0078A80E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D98C555E2C6B507F0078A80E /* RingSizeMeasurementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingSizeMeasurementView.swift; sourceTree = "<group>"; };
 		D98C55602C6B50800078A80E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D98C55632C6B50800078A80E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D98C55742C6B80340078A80E /* RingSizeMeasurementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingSizeMeasurementViewModel.swift; sourceTree = "<group>"; };
+		D98C55762C6B88E10078A80E /* JSONResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JSONResponse.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 				D98C55732C6B80140078A80E /* ViewModel */,
 				D98C55602C6B50800078A80E /* Assets.xcassets */,
 				D98C55622C6B50800078A80E /* Preview Content */,
+				D98C55762C6B88E10078A80E /* JSONResponse.json */,
 			);
 			path = RingSizeMeasurement;
 			sourceTree = "<group>";
@@ -81,7 +84,7 @@
 		D98C55722C6B7FFB0078A80E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D98C555E2C6B507F0078A80E /* ContentView.swift */,
+				D98C555E2C6B507F0078A80E /* RingSizeMeasurementView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -154,6 +157,7 @@
 			files = (
 				D98C55642C6B50800078A80E /* Preview Assets.xcassets in Resources */,
 				D98C55612C6B50800078A80E /* Assets.xcassets in Resources */,
+				D98C55772C6B88E10078A80E /* JSONResponse.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,7 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D98C555F2C6B507F0078A80E /* ContentView.swift in Sources */,
+				D98C555F2C6B507F0078A80E /* RingSizeMeasurementView.swift in Sources */,
 				D98C555D2C6B507F0078A80E /* RingSizeMeasurementApp.swift in Sources */,
 				D98C55752C6B80340078A80E /* RingSizeMeasurementViewModel.swift in Sources */,
 			);

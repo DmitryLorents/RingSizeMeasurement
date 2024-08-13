@@ -1,0 +1,223 @@
+{
+  "type": "sizes",
+  "data": {
+    "size_determine_button": {
+      "label": "Определить размер",
+      "icon": { // иконка серая с белой стрелкой - оставляем для ОС
+        "url": "https://g5.sunlight.net/media/content_img/b30371c16e3d79416c76a4df98a191e4728160e7.png",
+        "width": 24,
+        "height": 24
+      },
+      "type": "pdf-file",
+      "link": "https://g8.sunlight.net/media/content_img/70fecc4a782b4c53c60df7b85e5ecbee09f7643b.pdf"
+    },
+    "sizes_modal": {
+      "text": {
+        "label": "Изделие с удлинителем",
+        "color": "000000", // цвет надписи кнопки
+        "icon": { // новый ключ для иконки экстендера в кнопке
+          "url": "https://g5.sunlight.net/media/content_img/b30371c16e3d79416c76a4df98a191e4728160e7.png",
+          "width": 24,
+          "height": 24
+        },
+        "background_color": "CDCDCD"
+      },
+      "modal": {
+        "image": {
+          "url": "https://g2.sunlight.net/media/content_img/e5cd21b545e22593c77d4c7b375e8d74a19351b8.png",
+          "width": 358,
+          "height": 192
+        },
+        "title": "Изделие с удлинителем ",
+        "text": "Удлинитель — это дополнительная цепочка из того же металла. Благодаря ей можно регулировать размер украшения, не прибегая к услугам ювелира. Размер украшений с удлинителем отображается от минимального до максимального с учетом регулировки.",
+        "button": {
+          "label": "Понятно"
+        }
+      }
+    },
+    "size_determine_popup": { // все данные для отрисовки экрана "Определить размер", включая онбординг и табы
+      "determine_button": {
+        "label": "Определить размер",
+        "color": "2F7BFA",
+        "icon": {
+          "url": "https://g5.sunlight.net/media/content_img/b30371c16e3d79416c76a4df98a191e4728160e7.png",
+          "width": 24,
+          "height": 24
+        }
+      },
+      "screen_label": "Определить размер",
+      "screen_type": "ring",
+      "alerts": {
+        "success_message": {
+          "title": "Размер применен",
+          "message": "Можете перейти к оформлению украшения"
+        },
+        "info_message": {
+          "title": "Ваш размер закончился",
+          "message": "Пожалуйста, выберите другое украшение или другой размер"
+        }
+      },
+      "onboarding": {
+        "by_ring": [
+          {
+            "id": "step_1",
+            "image": {
+              "url": "https://placehold.co/600x400/png",
+              "width": 400,
+              "height": 400
+            },
+            "text": "Расположите кольцо так, чтобы внутри был красный круг",
+            "buttons": [
+              {
+                "id": "next",
+                "action": "step_2",
+                "label": "Понятно"
+              }
+            ]
+          },
+          {
+            "id": "step_2",
+            "image": {
+              "url": "https://placehold.co/600x400/png",
+              "width": 400,
+              "height": 400
+            },
+            "text": "Отрегулируйте размер красного круга так, чтобы он занял все внутреннее пространство кольца",
+            "buttons": [
+              {
+                "id": "previous",
+                "action": "step_1",
+                "label": "Назад"
+              },
+              {
+                "id": "next",
+                "action": "close",
+                "label": "Понятно"
+              }
+            ]
+          }
+        ],
+        "by_finger": [
+          {
+            "id": "step_1",
+            "image": {
+              "url": "https://placehold.co/600x400/png",
+              "width": 400,
+              "height": 400
+            },
+            "text": "Приложите палец на красную линию и отрегулируйте красную область по самому широкому месту",
+            "buttons": [
+              {
+                "id": "next",
+                "action": "close",
+                "label": "Понятно"
+              }
+            ]
+          }
+        ]
+      },
+      "tabs": [
+        {
+          "title": "По кольцу",
+          "id": "by_ring",
+          "screen_elements": [
+            {
+              "id": "step_1",
+              "image": null,
+              "title": "Отрегулируйте красную область, чтобы она заняла все внутреннее пространство кольца",
+              "text": [],
+              "buttons": [
+                {
+                  "id": "next",
+                  "action": "close",
+                  "label": "Применить размер"
+                }
+              ]
+            }
+          ],
+          "values": {
+            "map": {
+              "12.00": {
+                "label": "12\nразмер",
+                "value": 12
+              },
+              "12.50": {
+                "label": "12.5\nразмер",
+                "value": 12.5
+              },
+              ...
+              "18.00": {
+                "label": "18\nразмер",
+                "value": 18
+              },
+              "18.50": {
+                "label": "18.5\nразмер",
+                "value": 18.5
+              },
+              ...
+              "24.00": {
+                "label": "24\nразмер",
+                "value": 24
+              }
+            },
+            "default_value": 18,
+            "min_value": 12,
+            "max_value": 24,
+            "value_measure": "мм",
+            "validation_error": "Значение должно быть в пределах 12-24 мм"
+          }
+        },
+        {
+          "title": "По пальцу",
+          "id": "by_finger",
+          "screen_elements": [
+            {
+              "id": "step_1",
+              "image": null,
+              "title": "Отрегулируйте красную область по самому широкому месту на пальце",
+              "text": [],
+              "buttons": [
+                {
+                  "id": "next",
+                  "action": "close",
+                  "label": "Понятно"
+                }
+              ]
+            }
+          ],
+          "values": {
+            "map": {
+              "12.00": {
+                "label": "12\nразмер",
+                "value": 12
+              },
+              "12.50": {
+                "label": "12.5\nразмер",
+                "value": 12.5
+              },
+              ...
+              "18.00": {
+                "label": "18\nразмер",
+                "value": 18
+              },
+              "18.50": {
+                "label": "18.5\nразмер",
+                "value": 18.5
+              },
+              ...
+              "24.00": {
+                "label": "24\nразмер",
+                "value": 24
+              }
+            },
+            "default_value": 56.5,
+            "min_value": 37.7,
+            "max_value": 75.4,
+            "value_measure": "мм",
+            "validation_error": "Значение должно быть в пределах 37.7-75.4 мм"
+          }
+        }
+      ]
+    }
+  }
+}
