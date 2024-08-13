@@ -13,6 +13,8 @@
 		D98C55642C6B50800078A80E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D98C55632C6B50800078A80E /* Preview Assets.xcassets */; };
 		D98C55752C6B80340078A80E /* RingSizeMeasurementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55742C6B80340078A80E /* RingSizeMeasurementViewModel.swift */; };
 		D98C55772C6B88E10078A80E /* JSONResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D98C55762C6B88E10078A80E /* JSONResponse.json */; };
+		D98C557A2C6B958B0078A80E /* RingMeasurementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55792C6B958B0078A80E /* RingMeasurementModel.swift */; };
+		D98C557C2C6B9A8D0078A80E /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C557B2C6B9A8D0078A80E /* Tab.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,8 @@
 		D98C55632C6B50800078A80E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D98C55742C6B80340078A80E /* RingSizeMeasurementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingSizeMeasurementViewModel.swift; sourceTree = "<group>"; };
 		D98C55762C6B88E10078A80E /* JSONResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JSONResponse.json; sourceTree = "<group>"; };
+		D98C55792C6B958B0078A80E /* RingMeasurementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingMeasurementModel.swift; sourceTree = "<group>"; };
+		D98C557B2C6B9A8D0078A80E /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +59,7 @@
 		D98C555B2C6B507F0078A80E /* RingSizeMeasurement */ = {
 			isa = PBXGroup;
 			children = (
+				D98C55782C6B956B0078A80E /* Model */,
 				D98C55712C6B7FF30078A80E /* App */,
 				D98C55722C6B7FFB0078A80E /* View */,
 				D98C55732C6B80140078A80E /* ViewModel */,
@@ -95,6 +100,15 @@
 				D98C55742C6B80340078A80E /* RingSizeMeasurementViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D98C55782C6B956B0078A80E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D98C55792C6B958B0078A80E /* RingMeasurementModel.swift */,
+				D98C557B2C6B9A8D0078A80E /* Tab.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,7 +182,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D98C557A2C6B958B0078A80E /* RingMeasurementModel.swift in Sources */,
 				D98C555F2C6B507F0078A80E /* RingSizeMeasurementView.swift in Sources */,
+				D98C557C2C6B9A8D0078A80E /* Tab.swift in Sources */,
 				D98C555D2C6B507F0078A80E /* RingSizeMeasurementApp.swift in Sources */,
 				D98C55752C6B80340078A80E /* RingSizeMeasurementViewModel.swift in Sources */,
 			);

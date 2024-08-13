@@ -8,5 +8,5 @@
 import Foundation
 
 final class RingSizeMeasurementViewModel: ObservableObject {
-    @Published var segments: [String] = [""]
+    @Published var model: RingMeasurementModel = RingMeasurementModel.createStubModel()
 }
