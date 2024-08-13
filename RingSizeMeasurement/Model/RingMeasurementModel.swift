@@ -9,9 +9,10 @@ import Foundation
 
 struct RingMeasurementModel {
     let tabs: [String]
+    var size: Float
     
     static func createStubModel() -> Self {
         RingMeasurementModel(
-            tabs: ["По кольцу", "По пальцу"])
+            tabs: ["По кольцу", "По пальцу"], size: 18)
     }
 }

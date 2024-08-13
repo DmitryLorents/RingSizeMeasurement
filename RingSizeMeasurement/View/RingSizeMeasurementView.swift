@@ -12,6 +12,7 @@ struct RingSizeMeasurementView: View {
     @State private var selectedTab = 0
     
     
+    
     var body: some View {
         VStack {
             Picker("", selection: $selectedTab) {
@@ -25,11 +26,53 @@ struct RingSizeMeasurementView: View {
             
             Text("Отрегулируйте красную область, чтобы она заняла все внутреннее пространство кольца")
                 .padding(.vertical, 16)
-                .padding(.horizontal, 20)
             
+            Spacer()
+            
+            Image(.ring)
+            
+            Spacer()
+            
+            VStack {
+                Text(
+                    viewModel.formatSize()
+                )
+                Text("размер")
+                HStack {
+                    Button(action: {
+                        viewModel.decreaseSize()
+                    }, label: {
+                        Text("-")
+                    })
+                    Slider(value: $viewModel.model.size, in: 12...24, step: 0.5) { _ in}
+                    Button(action: {
+                        viewModel.increaseSize()
+                    }, label: {
+                        Text("+")
+                    })
+                }
+            }
+            
+            Button(action: {
+                print("Apply size action")
+            }, label: {
+                Spacer()
+                Text("Применить размер")
+                    .foregroundStyle(.white)
+                Spacer()
+            })
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .frame(height: 56)
+            )
+            .padding(.vertical, 28)
+//            .padding(.horizontal, 16)
             
         }
-        .padding()
+        .padding(.horizontal, 20)
+        .onAppear(perform: {
+            UISlider.appearance().minimumTrackTintColor = .pinkApp
+        })
     }
 }
 
