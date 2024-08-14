@@ -33,6 +33,7 @@ struct RingSizeMeasurementView: View {
             Image(.circleWithArrows)
                 .resizable()
                 .frame(width: viewModel.sizeInMM(), height: viewModel.sizeInMM(), alignment: .center)
+                .padding(.zero)
             
             
             Spacer()
@@ -65,6 +66,11 @@ struct RingSizeMeasurementView: View {
             
             Button(action: {
                 print("Apply size \(viewModel.formatSize())")
+                print("Bounds: ", UIScreen.main.bounds)
+                print("nativeBounds: ", UIScreen.main.nativeBounds)
+                print("Scale: ", UIScreen.main.scale)
+                print("nativeScale: ", UIScreen.main.nativeScale)
+//                print("naturalScale: ", UIScreen.main.naturalScale)
             }, label: {
                 Spacer()
                 Text("Применить размер")
