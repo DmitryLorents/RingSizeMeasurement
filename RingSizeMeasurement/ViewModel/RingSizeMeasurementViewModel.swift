@@ -32,6 +32,6 @@ final class RingSizeMeasurementViewModel: ObservableObject {
         let scale = Float(UIScreen.main.scale)
         let ptToMmCoefficient: Float = 0.15875
         let deviceScaleFactor = scale / nativeScale
-        return CGFloat(model.size * deviceScaleFactor / ptToMmCoefficient )
+        return CGFloat(model.size * deviceScaleFactor / ptToMmCoefficient)
     }
 }

@@ -17,6 +17,8 @@
 		D98C557E2C6C8A480078A80E /* CircleWithArrows.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C557D2C6C8A480078A80E /* CircleWithArrows.swift */; };
 		D98C55802C6C9E6D0078A80E /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C557F2C6C9E6D0078A80E /* CircleView.swift */; };
 		D98C55832C6CBC1D0078A80E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D98C55822C6CBC1D0078A80E /* Assets.xcassets */; };
+		D98C55862C6D25AA0078A80E /* FingerMeasurementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55852C6D25AA0078A80E /* FingerMeasurementView.swift */; };
+		D98C55882C6D28630078A80E /* DiameterMeasurementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55872C6D28630078A80E /* DiameterMeasurementView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		D98C557D2C6C8A480078A80E /* CircleWithArrows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleWithArrows.swift; sourceTree = "<group>"; };
 		D98C557F2C6C9E6D0078A80E /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		D98C55822C6CBC1D0078A80E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D98C55852C6D25AA0078A80E /* FingerMeasurementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerMeasurementView.swift; sourceTree = "<group>"; };
+		D98C55872C6D28630078A80E /* DiameterMeasurementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiameterMeasurementView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,8 @@
 			children = (
 				D98C557D2C6C8A480078A80E /* CircleWithArrows.swift */,
 				D98C557F2C6C9E6D0078A80E /* CircleView.swift */,
+				D98C55852C6D25AA0078A80E /* FingerMeasurementView.swift */,
+				D98C55872C6D28630078A80E /* DiameterMeasurementView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -206,8 +212,10 @@
 			files = (
 				D98C557A2C6B958B0078A80E /* RingMeasurementModel.swift in Sources */,
 				D98C555F2C6B507F0078A80E /* RingSizeMeasurementView.swift in Sources */,
+				D98C55882C6D28630078A80E /* DiameterMeasurementView.swift in Sources */,
 				D98C557C2C6B9A8D0078A80E /* Tab.swift in Sources */,
 				D98C557E2C6C8A480078A80E /* CircleWithArrows.swift in Sources */,
+				D98C55862C6D25AA0078A80E /* FingerMeasurementView.swift in Sources */,
 				D98C555D2C6B507F0078A80E /* RingSizeMeasurementApp.swift in Sources */,
 				D98C55802C6C9E6D0078A80E /* CircleView.swift in Sources */,
 				D98C55752C6B80340078A80E /* RingSizeMeasurementViewModel.swift in Sources */,

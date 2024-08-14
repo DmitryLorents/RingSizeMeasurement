@@ -26,18 +26,9 @@ struct RingSizeMeasurementView: View {
             
             Text("Отрегулируйте красную область, чтобы она заняла все внутреннее пространство кольца")
                 .padding(.vertical, 16)
-            
             Spacer()
-            
-//            Image(.ring)
-            Image(.circleWithArrows)
-                .resizable()
-                .frame(width: viewModel.sizeInMM(), height: viewModel.sizeInMM(), alignment: .center)
-                .padding(.zero)
-            
-            
+            measurementView
             Spacer()
-            
             VStack {
                 Text(
                     viewModel.formatSize()
@@ -70,7 +61,6 @@ struct RingSizeMeasurementView: View {
                 print("nativeBounds: ", UIScreen.main.nativeBounds)
                 print("Scale: ", UIScreen.main.scale)
                 print("nativeScale: ", UIScreen.main.nativeScale)
-//                print("naturalScale: ", UIScreen.main.naturalScale)
             }, label: {
                 Spacer()
                 Text("Применить размер")
@@ -87,9 +77,21 @@ struct RingSizeMeasurementView: View {
         .padding(.horizontal, 20)
         .onAppear(perform: {
             UISlider.appearance().minimumTrackTintColor = .pinkApp
-            UISlider.appearance().setThumbImage(.thumbNormal, for: .normal)
+            UISlider.appearance().setThumbImage(.thumbUnselected, for: .normal)
             UISlider.appearance().setThumbImage(.thumbSelected, for: .highlighted)
         })
+    }
+    
+    
+   @ViewBuilder var measurementView: some View {
+       switch selectedTab {
+       case 0 :
+           DiameterMeasurementView(size: $viewModel.model.sizeInMM)
+       case 1:
+           FingerMeasurementView(size: $viewModel.model.sizeInMM)
+       default:
+           EmptyView()
+       }
     }
 }
 
