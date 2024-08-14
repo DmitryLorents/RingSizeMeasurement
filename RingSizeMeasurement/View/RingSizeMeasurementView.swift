@@ -29,7 +29,11 @@ struct RingSizeMeasurementView: View {
             
             Spacer()
             
-            Image(.ring)
+//            Image(.ring)
+            Image(.circleWithArrows)
+                .resizable()
+                .frame(width: viewModel.sizeInMM(), height: viewModel.sizeInMM(), alignment: .center)
+            
             
             Spacer()
             
@@ -42,19 +46,25 @@ struct RingSizeMeasurementView: View {
                     Button(action: {
                         viewModel.decreaseSize()
                     }, label: {
-                        Text("-")
+                        RoundedRectangle(cornerRadius: 8)
+                            .foregroundStyle(.gray100)
+                            .frame(width: 40, height: 40)
+                            .overlay(Image(.minus))
                     })
                     Slider(value: $viewModel.model.size, in: 12...24, step: 0.5) { _ in}
                     Button(action: {
                         viewModel.increaseSize()
                     }, label: {
-                        Text("+")
+                        RoundedRectangle(cornerRadius: 8)
+                            .foregroundStyle(.gray100)
+                            .frame(width: 40, height: 40)
+                            .overlay(Image(.plus))
                     })
                 }
             }
             
             Button(action: {
-                print("Apply size action")
+                print("Apply size \(viewModel.formatSize())")
             }, label: {
                 Spacer()
                 Text("Применить размер")
@@ -66,12 +76,13 @@ struct RingSizeMeasurementView: View {
                     .frame(height: 56)
             )
             .padding(.vertical, 28)
-//            .padding(.horizontal, 16)
             
         }
         .padding(.horizontal, 20)
         .onAppear(perform: {
             UISlider.appearance().minimumTrackTintColor = .pinkApp
+            UISlider.appearance().setThumbImage(.thumbNormal, for: .normal)
+            UISlider.appearance().setThumbImage(.thumbSelected, for: .highlighted)
         })
     }
 }

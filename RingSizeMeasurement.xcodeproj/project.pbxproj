@@ -9,24 +9,28 @@
 /* Begin PBXBuildFile section */
 		D98C555D2C6B507F0078A80E /* RingSizeMeasurementApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C555C2C6B507F0078A80E /* RingSizeMeasurementApp.swift */; };
 		D98C555F2C6B507F0078A80E /* RingSizeMeasurementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C555E2C6B507F0078A80E /* RingSizeMeasurementView.swift */; };
-		D98C55612C6B50800078A80E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D98C55602C6B50800078A80E /* Assets.xcassets */; };
 		D98C55642C6B50800078A80E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D98C55632C6B50800078A80E /* Preview Assets.xcassets */; };
 		D98C55752C6B80340078A80E /* RingSizeMeasurementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55742C6B80340078A80E /* RingSizeMeasurementViewModel.swift */; };
 		D98C55772C6B88E10078A80E /* JSONResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D98C55762C6B88E10078A80E /* JSONResponse.json */; };
 		D98C557A2C6B958B0078A80E /* RingMeasurementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55792C6B958B0078A80E /* RingMeasurementModel.swift */; };
 		D98C557C2C6B9A8D0078A80E /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C557B2C6B9A8D0078A80E /* Tab.swift */; };
+		D98C557E2C6C8A480078A80E /* CircleWithArrows.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C557D2C6C8A480078A80E /* CircleWithArrows.swift */; };
+		D98C55802C6C9E6D0078A80E /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C557F2C6C9E6D0078A80E /* CircleView.swift */; };
+		D98C55832C6CBC1D0078A80E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D98C55822C6CBC1D0078A80E /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D98C55592C6B507F0078A80E /* RingSizeMeasurement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RingSizeMeasurement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D98C555C2C6B507F0078A80E /* RingSizeMeasurementApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingSizeMeasurementApp.swift; sourceTree = "<group>"; };
 		D98C555E2C6B507F0078A80E /* RingSizeMeasurementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingSizeMeasurementView.swift; sourceTree = "<group>"; };
-		D98C55602C6B50800078A80E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D98C55632C6B50800078A80E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D98C55742C6B80340078A80E /* RingSizeMeasurementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingSizeMeasurementViewModel.swift; sourceTree = "<group>"; };
 		D98C55762C6B88E10078A80E /* JSONResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JSONResponse.json; sourceTree = "<group>"; };
 		D98C55792C6B958B0078A80E /* RingMeasurementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingMeasurementModel.swift; sourceTree = "<group>"; };
 		D98C557B2C6B9A8D0078A80E /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
+		D98C557D2C6C8A480078A80E /* CircleWithArrows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleWithArrows.swift; sourceTree = "<group>"; };
+		D98C557F2C6C9E6D0078A80E /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		D98C55822C6CBC1D0078A80E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,9 +67,8 @@
 				D98C55782C6B956B0078A80E /* Model */,
 				D98C55722C6B7FFB0078A80E /* View */,
 				D98C55732C6B80140078A80E /* ViewModel */,
-				D98C55602C6B50800078A80E /* Assets.xcassets */,
+				D98C55842C6CBC400078A80E /* SupportingFiles */,
 				D98C55622C6B50800078A80E /* Preview Content */,
-				D98C55762C6B88E10078A80E /* JSONResponse.json */,
 			);
 			path = RingSizeMeasurement;
 			sourceTree = "<group>";
@@ -90,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				D98C555E2C6B507F0078A80E /* RingSizeMeasurementView.swift */,
+				D98C55812C6CA7AF0078A80E /* SubViews */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -109,6 +113,24 @@
 				D98C557B2C6B9A8D0078A80E /* Tab.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D98C55812C6CA7AF0078A80E /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				D98C557D2C6C8A480078A80E /* CircleWithArrows.swift */,
+				D98C557F2C6C9E6D0078A80E /* CircleView.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		D98C55842C6CBC400078A80E /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				D98C55762C6B88E10078A80E /* JSONResponse.json */,
+				D98C55822C6CBC1D0078A80E /* Assets.xcassets */,
+			);
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,7 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D98C55642C6B50800078A80E /* Preview Assets.xcassets in Resources */,
-				D98C55612C6B50800078A80E /* Assets.xcassets in Resources */,
+				D98C55832C6CBC1D0078A80E /* Assets.xcassets in Resources */,
 				D98C55772C6B88E10078A80E /* JSONResponse.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -185,7 +207,9 @@
 				D98C557A2C6B958B0078A80E /* RingMeasurementModel.swift in Sources */,
 				D98C555F2C6B507F0078A80E /* RingSizeMeasurementView.swift in Sources */,
 				D98C557C2C6B9A8D0078A80E /* Tab.swift in Sources */,
+				D98C557E2C6C8A480078A80E /* CircleWithArrows.swift in Sources */,
 				D98C555D2C6B507F0078A80E /* RingSizeMeasurementApp.swift in Sources */,
+				D98C55802C6C9E6D0078A80E /* CircleView.swift in Sources */,
 				D98C55752C6B80340078A80E /* RingSizeMeasurementViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

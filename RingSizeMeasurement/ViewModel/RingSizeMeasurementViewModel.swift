@@ -26,4 +26,8 @@ final class RingSizeMeasurementViewModel: ObservableObject {
         let divisionReminder = model.size.truncatingRemainder(dividingBy: 1) == 0 ? 0 : 1
         return String(format: "%0.\(divisionReminder)f", model.size)
     }
+    
+    func sizeInMM() -> CGFloat {
+        .init(model.size * 10)
+    }
 }
