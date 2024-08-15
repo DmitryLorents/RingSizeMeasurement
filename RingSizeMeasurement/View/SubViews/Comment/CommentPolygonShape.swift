@@ -32,7 +32,6 @@ struct CommentPolygonShape: Shape {
 
 #Preview {
     VStack(spacing: 0) {
-        Spacer()
         RoundedRectangle(cornerRadius: 20)
             .fill(.red)
             .frame(height: 100)

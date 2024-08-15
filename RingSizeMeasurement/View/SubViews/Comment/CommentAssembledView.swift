@@ -7,10 +7,9 @@
 
 import SwiftUI
 
-struct CommentView: View {
+struct CommentAssembledView: View {
     var body: some View {
         VStack(spacing: 0) {
-            Spacer()
             RoundedRectangle(cornerRadius: 20)
                 .fill(.red)
                 .frame(height: 100)
@@ -21,4 +20,8 @@ struct CommentView: View {
         }
         .padding(.zero)
     }
+}
+
+#Preview {
+    CommentAssembledView()
 }

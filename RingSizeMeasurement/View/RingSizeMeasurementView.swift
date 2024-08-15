@@ -26,8 +26,9 @@ struct RingSizeMeasurementView: View {
             
             Text("Отрегулируйте красную область, чтобы она заняла все внутреннее пространство кольца")
                 .padding(.vertical, 16)
-            CommentView()
-                .border(Color.black)
+            
+//            CommentView()
+//                .border(Color.black)
             Spacer()
             measurementView
             Spacer()
