@@ -29,30 +29,15 @@ struct RingSizeMeasurementView: View {
             Spacer()
             measurementView
             Spacer()
-            VStack {
-                Text(
-                    viewModel.formatSize()
-                )
-                Text("размер")
-                HStack {
-                    Button(action: {
-                        viewModel.decreaseSize()
-                    }, label: {
-                        RoundedRectangle(cornerRadius: 8)
-                            .foregroundStyle(.gray100)
-                            .frame(width: 40, height: 40)
-                            .overlay(Image(.minus))
-                    })
-                    Slider(value: $viewModel.model.size, in: 12...24, step: 0.5) { _ in}
-                    Button(action: {
-                        viewModel.increaseSize()
-                    }, label: {
-                        RoundedRectangle(cornerRadius: 8)
-                            .foregroundStyle(.gray100)
-                            .frame(width: 40, height: 40)
-                            .overlay(Image(.plus))
-                    })
-                }
+            
+            SizeChangeView(
+                size: $viewModel.model.size,
+                sizeValues: viewModel.model.sizeValues,
+                step: 0.5
+            ) {
+                viewModel.increaseSize()
+            } decreaseAction: {
+                viewModel.decreaseSize()
             }
             
             Button(action: {
@@ -83,15 +68,15 @@ struct RingSizeMeasurementView: View {
     }
     
     
-   @ViewBuilder var measurementView: some View {
-       switch selectedTab {
-       case 0 :
-           DiameterMeasurementView(size: $viewModel.model.sizeInMM)
-       case 1:
-           FingerMeasurementView(size: $viewModel.model.sizeInMM)
-       default:
-           EmptyView()
-       }
+    @ViewBuilder var measurementView: some View {
+        switch selectedTab {
+        case 0 :
+            DiameterMeasurementView(size: $viewModel.model.sizeInMM)
+        case 1:
+            FingerMeasurementView(size: $viewModel.model.sizeInMM)
+        default:
+            EmptyView()
+        }
     }
 }
 

@@ -11,14 +11,14 @@ final class RingSizeMeasurementViewModel: ObservableObject {
     @Published var model: RingMeasurementModel = RingMeasurementModel.createStubModel()
     
     func increaseSize() {
-        if model.size < 24 {
-            model.size += 0.5
+        if model.size < model.maxValue {
+            model.size += model.step
         }
     }
     
     func decreaseSize() {
-        if model.size > 12 {
-            model.size -= 0.5
+        if model.size > model.minValue {
+            model.size -= model.step
         }
     }
     

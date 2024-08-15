@@ -10,7 +10,14 @@ import UIKit
 struct RingMeasurementModel {
     let tabs: [String]
     var size: Float
-    
+    let step: Float
+    let sizeValues: [Float]
+    var maxValue: Float {
+        sizeValues.max() ?? 0
+    }
+    var minValue: Float {
+        sizeValues.min() ?? 0
+    }
     var sizeInMM: Float {
         get {
             let nativeScale = Float(UIScreen.main.nativeScale)
@@ -26,6 +33,10 @@ struct RingMeasurementModel {
     
     static func createStubModel() -> Self {
         RingMeasurementModel(
-            tabs: ["По кольцу", "По пальцу"], size: 18)
+            tabs: ["По кольцу", "По пальцу"],
+            size: 18,
+            step: 0.5,
+            sizeValues: Array(stride(from: 12, to: 24, by: 0.5))
+        )
     }
 }
