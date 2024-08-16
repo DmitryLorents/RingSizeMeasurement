@@ -9,19 +9,13 @@ import SwiftUI
 
 extension View {
     
-    func onboarding(
-        enabled: Bool,
-        frameRect: CGRect = CGRect(x: 0, y: 0, width: 150, height: 100)
-    ) -> some View {
-        
+    func onboarding(enabled: Bool, maskContent: () -> some View) -> some View {
         
         self
             .overlay(
-                Color.black.opacity(0.5)
+                Color.black.opacity(0.4)
                     .reverseMask {
-                        RoundedRectangle(cornerRadius: frameRect.height / 2)
-                            .fill(.blue)
-                            .frame(width: frameRect.width, height: frameRect.height)
+                        maskContent()
                     }
                     .frame(width: 10_000, height: 10_000)
                     .opacity(enabled ? 1 : 0)
