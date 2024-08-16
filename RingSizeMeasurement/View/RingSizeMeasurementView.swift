@@ -39,18 +39,18 @@ struct RingSizeMeasurementView: View {
             
             Spacer()
             measurementView
-                .modifier(CoordinateSpaceFrameProvider(shouldIgnore: onboardingStep != 1, coordinateSpace: .local, frame: { frame in
-                    print("Frame1=", frame)
-                    measuredFrame = frame
-                }))
-                .opacity(onboardingStep == 0 ? 1 : 0)
+//                .modifier(CoordinateSpaceFrameProvider(shouldIgnore: onboardingStep != 1, coordinateSpace: .local, frame: { frame in
+//                    print("Frame1=", frame)
+//                    measuredFrame = frame
+//                }))
+//                .opacity(onboardingStep == 0 ? 1 : 0)
                 .overlay(
                     Image(.ring)
                         .opacity(onboardingStep == 1 ? 1 : 0)
                 )
-                .onboarding(enabled: onboardingStep == 1, yOffset: -measuredFrame.height) {
+                .onboarding(enabled: onboardingStep == 1, yOffset: -140) {
                     Circle()
-                        .frame(height: 200)
+                        .frame(height: 280)
                         
                 }
             Spacer()
@@ -69,11 +69,11 @@ struct RingSizeMeasurementView: View {
             } decreaseAction: {
                 viewModel.decreaseSize()
             }
-            .modifier(CoordinateSpaceFrameProvider(shouldIgnore: onboardingStep != 2, coordinateSpace: .local, frame: { frame in
-                print("Frame2=", frame)
-                measuredFrame = frame
-            }))
-            .onboarding(enabled: onboardingStep == 2, yOffset: -measuredFrame.height) {
+//            .modifier(CoordinateSpaceFrameProvider(shouldIgnore: onboardingStep != 2, coordinateSpace: .local, frame: { frame in
+//                print("Frame2=", frame)
+//                measuredFrame = frame
+//            }))
+            .onboarding(enabled: onboardingStep == 2, yOffset: -30) {
                 RoundedRectangle(cornerRadius: 10)
                     .frame(width: UIScreen.main.bounds.width - 24, height: 60)
             }
