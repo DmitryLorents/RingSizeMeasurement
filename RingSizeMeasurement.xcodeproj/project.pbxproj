@@ -77,11 +77,11 @@
 		D98C555B2C6B507F0078A80E /* RingSizeMeasurement */ = {
 			isa = PBXGroup;
 			children = (
-				D9F2CB622C6F43D500626B3B /* Extension */,
 				D98C55712C6B7FF30078A80E /* App */,
 				D98C55782C6B956B0078A80E /* Model */,
 				D98C55722C6B7FFB0078A80E /* View */,
 				D98C55732C6B80140078A80E /* ViewModel */,
+				D9F2CB622C6F43D500626B3B /* Extension */,
 				D98C55842C6CBC400078A80E /* SupportingFiles */,
 				D98C55622C6B50800078A80E /* Preview Content */,
 			);

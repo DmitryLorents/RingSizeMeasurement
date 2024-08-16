@@ -10,6 +10,7 @@ import SwiftUI
 struct RingSizeMeasurementView: View {
     @StateObject private var viewModel = RingSizeMeasurementViewModel()
     @State private var selectedTab = 0
+    @State var onboardingStep = 0
     
     
     
@@ -31,6 +32,10 @@ struct RingSizeMeasurementView: View {
 //                .border(Color.black)
             Spacer()
             measurementView
+                .onboarding(enabled: onboardingStep == 1) {
+                    Circle()
+                        .frame(height: 200)
+                }
             Spacer()
             
             SizeChangeView(
@@ -42,8 +47,13 @@ struct RingSizeMeasurementView: View {
             } decreaseAction: {
                 viewModel.decreaseSize()
             }
+            .onboarding(enabled: onboardingStep == 2) {
+                RoundedRectangle(cornerRadius: 10)
+                    .frame(width: UIScreen.main.bounds.width - 24, height: 120)
+            }
             
             Button(action: {
+                onboardingStep = (onboardingStep + 1) % 3
                 print("Apply size \(viewModel.formatSize())")
                 print("Bounds: ", UIScreen.main.bounds)
                 print("nativeBounds: ", UIScreen.main.nativeBounds)
@@ -59,6 +69,7 @@ struct RingSizeMeasurementView: View {
                 RoundedRectangle(cornerRadius: 10)
                     .frame(height: 56)
             )
+            .zIndex(1)
             .padding(.vertical, 28)
             
         }
