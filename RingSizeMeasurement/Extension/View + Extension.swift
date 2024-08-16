@@ -21,6 +21,14 @@ extension View {
                     .opacity(enabled ? 1 : 0)
             )
             .zIndex(enabled ? 1 : 0)
+            .overlay(
+                CommentAssembledView()
+                    .frame(height: 200)
+                    .offset(x: 0, y: -140)
+                    .opacity(enabled ? 1 : 0)
+                    .zIndex(enabled ? 50 : 0)
+            )
+        
     }
         
     
@@ -36,4 +44,8 @@ extension View {
                 }
             )
         }
+}
+
+#Preview {
+    RingSizeMeasurementView()
 }

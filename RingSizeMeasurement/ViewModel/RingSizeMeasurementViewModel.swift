@@ -12,13 +12,13 @@ final class RingSizeMeasurementViewModel: ObservableObject {
     
     func increaseSize() {
         if model.size < model.maxValue {
-            model.size += model.step
+            model.size += model.sizeStep
         }
     }
     
     func decreaseSize() {
         if model.size > model.minValue {
-            model.size -= model.step
+            model.size -= model.sizeStep
         }
     }
     
@@ -33,5 +33,9 @@ final class RingSizeMeasurementViewModel: ObservableObject {
         let ptToMmCoefficient: Float = 0.15875
         let deviceScaleFactor = scale / nativeScale
         return CGFloat(model.size * deviceScaleFactor / ptToMmCoefficient)
+    }
+    
+    func nextStep() {
+        model.onboardingStep = (model.onboardingStep + 1) / model.maxOnboardingSteps
     }
 }

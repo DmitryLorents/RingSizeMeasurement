@@ -10,7 +10,7 @@ import SwiftUI
 struct RingSizeMeasurementView: View {
     @StateObject private var viewModel = RingSizeMeasurementViewModel()
     @State private var selectedTab = 0
-    @State var onboardingStep = 0
+    @State var onboardingStep = 0 //viewModel.model.onboardingStep
     
     
     
@@ -47,12 +47,21 @@ struct RingSizeMeasurementView: View {
             } decreaseAction: {
                 viewModel.decreaseSize()
             }
+            .overlay(
+                CommentAssembledView()
+                    .frame(height: 200)
+                    .offset(x: 0, y: -140)
+                    .opacity(onboardingStep == 2 ? 1 : 0)
+                    .zIndex(onboardingStep == 2 ? 50 : 0)
+            )
+            
             .onboarding(enabled: onboardingStep == 2) {
                 RoundedRectangle(cornerRadius: 10)
                     .frame(width: UIScreen.main.bounds.width - 24, height: 120)
             }
             
             Button(action: {
+//                viewModel.nextStep()
                 onboardingStep = (onboardingStep + 1) % 3
                 print("Apply size \(viewModel.formatSize())")
                 print("Bounds: ", UIScreen.main.bounds)

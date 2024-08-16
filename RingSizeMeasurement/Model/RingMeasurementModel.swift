@@ -10,7 +10,9 @@ import UIKit
 struct RingMeasurementModel {
     let tabs: [String]
     var size: Float
-    let step: Float
+    let sizeStep: Float
+    var onboardingStep: Int
+    let maxOnboardingSteps: Int
     let sizeValues: [Float]
     var maxValue: Float {
         sizeValues.max() ?? 0
@@ -35,7 +37,9 @@ struct RingMeasurementModel {
         RingMeasurementModel(
             tabs: ["По кольцу", "По пальцу"],
             size: 18,
-            step: 0.5,
+            sizeStep: 0.5,
+            onboardingStep: 0,
+            maxOnboardingSteps: 2,
             sizeValues: Array(stride(from: 12, to: 24, by: 0.5))
         )
     }
