@@ -10,12 +10,10 @@ import SwiftUI
 struct CommentAssembledView: View {
     var body: some View {
         VStack(spacing: 0) {
-            RoundedRectangle(cornerRadius: 20)
-                .fill(.red)
-                .frame(height: 100)
+            CommentView() {print("Close button")}
                 
             CommentPolygonShape()
-                .fill(.red)
+                .fill(.yellow)
                 .frame(width: 20, height: 10)
         }
         .padding(.zero)

@@ -52,7 +52,7 @@ struct RingSizeMeasurementView: View {
             }, label: {
                 Spacer()
                 Text("Применить размер")
-                    .foregroundStyle(.white)
+                    .foregroundColor(.white)
                 Spacer()
             })
             .background(

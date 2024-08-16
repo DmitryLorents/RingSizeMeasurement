@@ -15,7 +15,7 @@ struct OnboardingButtonView: View {
     var body: some View {
         Button(action: {action()}, label: {
             Text(label)
-                .foregroundStyle(buttonType.textColor)
+                .foregroundColor(buttonType.textColor)
                 .padding(.vertical, 4)
                 .padding(.horizontal, 16)
         })

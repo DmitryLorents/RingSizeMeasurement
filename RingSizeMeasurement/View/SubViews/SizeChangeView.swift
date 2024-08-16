@@ -34,7 +34,7 @@ struct SizeChangeView: View {
                     decreaseAction()
                 }, label: {
                     RoundedRectangle(cornerRadius: 8)
-                        .foregroundStyle(.gray100)
+                        .foregroundColor(.gray100)
                         .frame(width: 40, height: 40)
                         .overlay(Image(.minus))
                 })
@@ -43,7 +43,7 @@ struct SizeChangeView: View {
                     increaseAction()
                 }, label: {
                     RoundedRectangle(cornerRadius: 8)
-                        .foregroundStyle(.gray100)
+                        .foregroundColor(.gray100)
                         .frame(width: 40, height: 40)
                         .overlay(Image(.plus))
                 })

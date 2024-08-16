@@ -17,7 +17,3 @@ struct DiameterMeasurementView: View {
                 .frame(width: CGFloat(size), height: CGFloat(size), alignment: .center)
     }
 }
-
-//#Preview {
-//    DiameterMeasurementView(size: 100)
-//}

@@ -14,17 +14,16 @@
 		D98C55772C6B88E10078A80E /* JSONResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D98C55762C6B88E10078A80E /* JSONResponse.json */; };
 		D98C557A2C6B958B0078A80E /* RingMeasurementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55792C6B958B0078A80E /* RingMeasurementModel.swift */; };
 		D98C557C2C6B9A8D0078A80E /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C557B2C6B9A8D0078A80E /* Tab.swift */; };
-		D98C557E2C6C8A480078A80E /* CircleWithArrows.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C557D2C6C8A480078A80E /* CircleWithArrows.swift */; };
-		D98C55802C6C9E6D0078A80E /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C557F2C6C9E6D0078A80E /* CircleView.swift */; };
 		D98C55832C6CBC1D0078A80E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D98C55822C6CBC1D0078A80E /* Assets.xcassets */; };
 		D98C55862C6D25AA0078A80E /* FingerMeasurementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55852C6D25AA0078A80E /* FingerMeasurementView.swift */; };
 		D98C55882C6D28630078A80E /* DiameterMeasurementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55872C6D28630078A80E /* DiameterMeasurementView.swift */; };
 		D98C558A2C6DD2F20078A80E /* SizeChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55892C6DD2F20078A80E /* SizeChangeView.swift */; };
 		D98C558C2C6DF0C50078A80E /* CommentPolygonShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C558B2C6DF0C50078A80E /* CommentPolygonShape.swift */; };
 		D98C558E2C6DF9DA0078A80E /* CommentAssembledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C558D2C6DF9DA0078A80E /* CommentAssembledView.swift */; };
-		D98C55912C6E1A580078A80E /* CommentView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55902C6E1A580078A80E /* CommentView2.swift */; };
+		D98C55912C6E1A580078A80E /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55902C6E1A580078A80E /* CommentView.swift */; };
 		D98C55932C6E26280078A80E /* OnboardingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55922C6E26280078A80E /* OnboardingButtonView.swift */; };
 		D98C55952C6E27A90078A80E /* ButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55942C6E27A90078A80E /* ButtonType.swift */; };
+		D9F2CB642C6F43ED00626B3B /* View + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F2CB632C6F43ED00626B3B /* View + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,17 +35,16 @@
 		D98C55762C6B88E10078A80E /* JSONResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JSONResponse.json; sourceTree = "<group>"; };
 		D98C55792C6B958B0078A80E /* RingMeasurementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingMeasurementModel.swift; sourceTree = "<group>"; };
 		D98C557B2C6B9A8D0078A80E /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
-		D98C557D2C6C8A480078A80E /* CircleWithArrows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleWithArrows.swift; sourceTree = "<group>"; };
-		D98C557F2C6C9E6D0078A80E /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		D98C55822C6CBC1D0078A80E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D98C55852C6D25AA0078A80E /* FingerMeasurementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerMeasurementView.swift; sourceTree = "<group>"; };
 		D98C55872C6D28630078A80E /* DiameterMeasurementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiameterMeasurementView.swift; sourceTree = "<group>"; };
 		D98C55892C6DD2F20078A80E /* SizeChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeChangeView.swift; sourceTree = "<group>"; };
 		D98C558B2C6DF0C50078A80E /* CommentPolygonShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentPolygonShape.swift; sourceTree = "<group>"; };
 		D98C558D2C6DF9DA0078A80E /* CommentAssembledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentAssembledView.swift; sourceTree = "<group>"; };
-		D98C55902C6E1A580078A80E /* CommentView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView2.swift; sourceTree = "<group>"; };
+		D98C55902C6E1A580078A80E /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		D98C55922C6E26280078A80E /* OnboardingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingButtonView.swift; sourceTree = "<group>"; };
 		D98C55942C6E27A90078A80E /* ButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonType.swift; sourceTree = "<group>"; };
+		D9F2CB632C6F43ED00626B3B /* View + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +77,7 @@
 		D98C555B2C6B507F0078A80E /* RingSizeMeasurement */ = {
 			isa = PBXGroup;
 			children = (
+				D9F2CB622C6F43D500626B3B /* Extension */,
 				D98C55712C6B7FF30078A80E /* App */,
 				D98C55782C6B956B0078A80E /* Model */,
 				D98C55722C6B7FFB0078A80E /* View */,
@@ -134,8 +133,6 @@
 		D98C55812C6CA7AF0078A80E /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
-				D98C557D2C6C8A480078A80E /* CircleWithArrows.swift */,
-				D98C557F2C6C9E6D0078A80E /* CircleView.swift */,
 				D98C55852C6D25AA0078A80E /* FingerMeasurementView.swift */,
 				D98C55872C6D28630078A80E /* DiameterMeasurementView.swift */,
 				D98C55892C6DD2F20078A80E /* SizeChangeView.swift */,
@@ -157,12 +154,20 @@
 			isa = PBXGroup;
 			children = (
 				D98C55922C6E26280078A80E /* OnboardingButtonView.swift */,
-				D98C55902C6E1A580078A80E /* CommentView2.swift */,
+				D98C55902C6E1A580078A80E /* CommentView.swift */,
 				D98C558B2C6DF0C50078A80E /* CommentPolygonShape.swift */,
 				D98C558D2C6DF9DA0078A80E /* CommentAssembledView.swift */,
 				D98C55942C6E27A90078A80E /* ButtonType.swift */,
 			);
 			path = Comment;
+			sourceTree = "<group>";
+		};
+		D9F2CB622C6F43D500626B3B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D9F2CB632C6F43ED00626B3B /* View + Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,17 +242,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				D98C557A2C6B958B0078A80E /* RingMeasurementModel.swift in Sources */,
-				D98C55912C6E1A580078A80E /* CommentView2.swift in Sources */,
+				D98C55912C6E1A580078A80E /* CommentView.swift in Sources */,
+				D9F2CB642C6F43ED00626B3B /* View + Extension.swift in Sources */,
 				D98C558C2C6DF0C50078A80E /* CommentPolygonShape.swift in Sources */,
 				D98C555F2C6B507F0078A80E /* RingSizeMeasurementView.swift in Sources */,
 				D98C55882C6D28630078A80E /* DiameterMeasurementView.swift in Sources */,
 				D98C557C2C6B9A8D0078A80E /* Tab.swift in Sources */,
-				D98C557E2C6C8A480078A80E /* CircleWithArrows.swift in Sources */,
 				D98C558E2C6DF9DA0078A80E /* CommentAssembledView.swift in Sources */,
 				D98C55862C6D25AA0078A80E /* FingerMeasurementView.swift in Sources */,
 				D98C555D2C6B507F0078A80E /* RingSizeMeasurementApp.swift in Sources */,
 				D98C55952C6E27A90078A80E /* ButtonType.swift in Sources */,
-				D98C55802C6C9E6D0078A80E /* CircleView.swift in Sources */,
 				D98C55932C6E26280078A80E /* OnboardingButtonView.swift in Sources */,
 				D98C55752C6B80340078A80E /* RingSizeMeasurementViewModel.swift in Sources */,
 				D98C558A2C6DD2F20078A80E /* SizeChangeView.swift in Sources */,
@@ -392,6 +396,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -421,6 +426,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
