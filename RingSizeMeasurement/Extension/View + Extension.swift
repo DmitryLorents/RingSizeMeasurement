@@ -9,9 +9,13 @@ import SwiftUI
 
 extension View {
     
-    func onboarding(enabled: Bool, maskContent: () -> some View) -> some View {
-        
-        self
+    func onboarding(enabled: Bool, yOffset: CGFloat = 0, maskContent: () -> some View) -> some View {
+
+        return self
+//            .modifier(CoordinateSpaceFrameProvider(coordinateSpace: .local, frame: { frame in
+//                frameMeasured = frame
+//                print("Frame measured", frame)
+//            }))
             .overlay(
                 Color.black.opacity(0.4)
                     .reverseMask {
@@ -23,10 +27,10 @@ extension View {
             .zIndex(enabled ? 1 : 0)
             .overlay(
                 CommentAssembledView()
-                    .frame(height: 200)
-                    .offset(x: 0, y: -140)
+                    .frame(minHeight: 300)
+                    .offset(x: 0, y: yOffset-60)
                     .opacity(enabled ? 1 : 0)
-                    .zIndex(enabled ? 50 : 0)
+                    .zIndex(enabled ? 1 : 0)
             )
         
     }

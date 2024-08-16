@@ -11,6 +11,7 @@ struct RingSizeMeasurementView: View {
     @StateObject private var viewModel = RingSizeMeasurementViewModel()
     @State private var selectedTab = 0
     @State var onboardingStep = 0 //viewModel.model.onboardingStep
+    @State var measuredFrame: CGRect = .zero
     
     
     
@@ -28,15 +29,36 @@ struct RingSizeMeasurementView: View {
             Text("Отрегулируйте красную область, чтобы она заняла все внутреннее пространство кольца")
                 .padding(.vertical, 16)
             
-//            CommentView()
-//                .border(Color.black)
+            
+//            Image(.ring)
+//                .mask(
+//                    Text("SwiftUI")
+//                        .font(.largeTitle)
+//                        .bold()
+//                )
+            
             Spacer()
             measurementView
-                .onboarding(enabled: onboardingStep == 1) {
+                .modifier(CoordinateSpaceFrameProvider(shouldIgnore: onboardingStep != 1, coordinateSpace: .local, frame: { frame in
+                    print("Frame1=", frame)
+                    measuredFrame = frame
+                }))
+                .opacity(onboardingStep == 0 ? 1 : 0)
+                .overlay(
+                    Image(.ring)
+                        .opacity(onboardingStep == 1 ? 1 : 0)
+                )
+                .onboarding(enabled: onboardingStep == 1, yOffset: -measuredFrame.height) {
                     Circle()
                         .frame(height: 200)
+                        
                 }
             Spacer()
+            
+            Text(
+                viewModel.formatSize()
+            )
+            Text("размер")
             
             SizeChangeView(
                 size: $viewModel.model.size,
@@ -47,17 +69,13 @@ struct RingSizeMeasurementView: View {
             } decreaseAction: {
                 viewModel.decreaseSize()
             }
-            .overlay(
-                CommentAssembledView()
-                    .frame(height: 200)
-                    .offset(x: 0, y: -140)
-                    .opacity(onboardingStep == 2 ? 1 : 0)
-                    .zIndex(onboardingStep == 2 ? 50 : 0)
-            )
-            
-            .onboarding(enabled: onboardingStep == 2) {
+            .modifier(CoordinateSpaceFrameProvider(shouldIgnore: onboardingStep != 2, coordinateSpace: .local, frame: { frame in
+                print("Frame2=", frame)
+                measuredFrame = frame
+            }))
+            .onboarding(enabled: onboardingStep == 2, yOffset: -measuredFrame.height) {
                 RoundedRectangle(cornerRadius: 10)
-                    .frame(width: UIScreen.main.bounds.width - 24, height: 120)
+                    .frame(width: UIScreen.main.bounds.width - 24, height: 60)
             }
             
             Button(action: {

@@ -51,7 +51,7 @@ struct CommentView: View {
         .padding(12)
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(.yellow)
+                .fill(.white)
         )
         
         

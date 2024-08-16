@@ -24,6 +24,7 @@
 		D98C55932C6E26280078A80E /* OnboardingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55922C6E26280078A80E /* OnboardingButtonView.swift */; };
 		D98C55952C6E27A90078A80E /* ButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55942C6E27A90078A80E /* ButtonType.swift */; };
 		D9F2CB642C6F43ED00626B3B /* View + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F2CB632C6F43ED00626B3B /* View + Extension.swift */; };
+		D9F2CB672C6F8D2800626B3B /* CoordinateSpaceFrameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F2CB662C6F8D2800626B3B /* CoordinateSpaceFrameProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		D98C55922C6E26280078A80E /* OnboardingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingButtonView.swift; sourceTree = "<group>"; };
 		D98C55942C6E27A90078A80E /* ButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonType.swift; sourceTree = "<group>"; };
 		D9F2CB632C6F43ED00626B3B /* View + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + Extension.swift"; sourceTree = "<group>"; };
+		D9F2CB662C6F8D2800626B3B /* CoordinateSpaceFrameProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateSpaceFrameProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				D98C55712C6B7FF30078A80E /* App */,
+				D9F2CB652C6F8D0C00626B3B /* Modifiers */,
 				D98C55782C6B956B0078A80E /* Model */,
 				D98C55722C6B7FFB0078A80E /* View */,
 				D98C55732C6B80140078A80E /* ViewModel */,
@@ -170,6 +173,14 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		D9F2CB652C6F8D0C00626B3B /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				D9F2CB662C6F8D2800626B3B /* CoordinateSpaceFrameProvider.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -245,6 +256,7 @@
 				D98C55912C6E1A580078A80E /* CommentView.swift in Sources */,
 				D9F2CB642C6F43ED00626B3B /* View + Extension.swift in Sources */,
 				D98C558C2C6DF0C50078A80E /* CommentPolygonShape.swift in Sources */,
+				D9F2CB672C6F8D2800626B3B /* CoordinateSpaceFrameProvider.swift in Sources */,
 				D98C555F2C6B507F0078A80E /* RingSizeMeasurementView.swift in Sources */,
 				D98C55882C6D28630078A80E /* DiameterMeasurementView.swift in Sources */,
 				D98C557C2C6B9A8D0078A80E /* Tab.swift in Sources */,

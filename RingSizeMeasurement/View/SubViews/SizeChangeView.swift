@@ -25,10 +25,10 @@ struct SizeChangeView: View {
     
     var body: some View {
         VStack {
-            Text(
-                formatSize()
-            )
-            Text("размер")
+//            Text(
+//                formatSize()
+//            )
+//            Text("размер")
             HStack {
                 Button(action: {
                     decreaseAction()
