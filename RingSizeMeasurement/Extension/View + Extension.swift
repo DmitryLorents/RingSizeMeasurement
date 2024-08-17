@@ -9,7 +9,7 @@ import SwiftUI
 
 extension View {
     
-    func onboarding(enabled: Bool, yOffset: CGFloat = 0, maskContent: () -> some View) -> some View {
+    func onboarding(enabled: Bool, yOffset: CGFloat = 0, maxCommentHeight: CGFloat, maskContent: () -> some View) -> some View {
 
         return self
             .overlay(
@@ -22,8 +22,12 @@ extension View {
             )
             .zIndex(enabled ? 1 : 0)
             .overlay(
-                CommentAssembledView()
-                    .frame(minHeight: 300)
+                CommentAssembledView(maxHeight: 100)
+//                    .border(Color.black)
+//                    .frame(height: 10_000)
+                    .frame(minHeight: maxCommentHeight)
+                    .frame(maxHeight: 100)
+//                    .frame(minHeight: .greatestFiniteMagnitude)
                     .offset(x: 0, y: yOffset-80)
                     .opacity(enabled ? 1 : 0)
                     .zIndex(enabled ? 1 : 0)

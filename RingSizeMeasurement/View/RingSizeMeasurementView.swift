@@ -10,102 +10,96 @@ import SwiftUI
 struct RingSizeMeasurementView: View {
     @StateObject private var viewModel = RingSizeMeasurementViewModel()
     @State private var selectedTab = 0
-    @State var onboardingStep = 0 
+    @State var onboardingStep = 0
     @State var measuredFrame: CGRect = .zero
     
     
     
     var body: some View {
-        VStack {
-            Picker("", selection: $selectedTab) {
-                ForEach(viewModel.model.tabs, id: \.self) { tabName in
-                    let index = viewModel.model.tabs.firstIndex(of: tabName) ?? 0
-                    Text(tabName).tag(index)
+        GeometryReader { geometry in
+            let safeAreaTop = geometry.safeAreaInsets.top
+            let roundMaskHeight: CGFloat = 280
+            let maxCommentHeight = UIScreen.main.bounds.height / 2 - safeAreaTop - 40 - (roundMaskHeight / 2)
+            
+            VStack {
+                Picker("", selection: $selectedTab) {
+                    ForEach(viewModel.model.tabs, id: \.self) { tabName in
+                        let index = viewModel.model.tabs.firstIndex(of: tabName) ?? 0
+                        Text(tabName).tag(index)
+                    }
+                    
+                }
+                .pickerStyle(.segmented)
+                
+                Text("Отрегулируйте красную область, чтобы она заняла все внутреннее пространство кольца")
+                    .padding(.vertical, 16)
+                
+                
+                Spacer()
+                measurementView
+                    .overlay(
+                        Image(.ring)
+                            .opacity(onboardingStep == 1 ? 1 : 0)
+                    )
+                    .onboarding(enabled: onboardingStep == 1, yOffset: -140, maxCommentHeight: maxCommentHeight) {
+                        Circle()
+                            .frame(height: roundMaskHeight)
+                        
+                    }
+                Spacer()
+                
+                Text(
+                    viewModel.formatSize()
+                )
+                Text("размер")
+                
+                SizeChangeView(
+                    size: $viewModel.model.size,
+                    sizeValues: viewModel.model.sizeValues,
+                    step: 0.5
+                ) {
+                    viewModel.increaseSize()
+                } decreaseAction: {
+                    viewModel.decreaseSize()
+                }
+                //            .modifier(CoordinateSpaceFrameProvider(shouldIgnore: onboardingStep != 2, coordinateSpace: .local, frame: { frame in
+                //                print("Frame2=", frame)
+                //                measuredFrame = frame
+                //            }))
+                .onboarding(enabled: onboardingStep == 2, yOffset: -30, maxCommentHeight: maxCommentHeight) {
+                    RoundedRectangle(cornerRadius: 10)
+                        .frame(width: UIScreen.main.bounds.width - 24, height: 60)
                 }
                 
-            }
-            .pickerStyle(.segmented)
-            
-            Text("Отрегулируйте красную область, чтобы она заняла все внутреннее пространство кольца")
-                .padding(.vertical, 16)
-            
-            
-//            Image(.ring)
-//                .mask(
-//                    Text("SwiftUI")
-//                        .font(.largeTitle)
-//                        .bold()
-//                )
-            
-            Spacer()
-            measurementView
-//                .modifier(CoordinateSpaceFrameProvider(shouldIgnore: onboardingStep != 1, coordinateSpace: .local, frame: { frame in
-//                    print("Frame1=", frame)
-//                    measuredFrame = frame
-//                }))
-//                .opacity(onboardingStep == 0 ? 1 : 0)
-                .overlay(
-                    Image(.ring)
-                        .opacity(onboardingStep == 1 ? 1 : 0)
+                Button(action: {
+                    //                viewModel.nextStep()
+                    onboardingStep = (onboardingStep + 1) % 3
+                    print("Apply size \(viewModel.formatSize())")
+                    print("Bounds: ", UIScreen.main.bounds)
+                    print("nativeBounds: ", UIScreen.main.nativeBounds)
+                    print("Scale: ", UIScreen.main.scale)
+                    print("nativeScale: ", UIScreen.main.nativeScale)
+                }, label: {
+                    Spacer()
+                    Text("Применить размер")
+                        .foregroundColor(.white)
+                    Spacer()
+                })
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .frame(height: 56)
                 )
-                .onboarding(enabled: onboardingStep == 1, yOffset: -140) {
-                    Circle()
-                        .frame(height: 280)
-                        
-                }
-            Spacer()
-            
-            Text(
-                viewModel.formatSize()
-            )
-            Text("размер")
-            
-            SizeChangeView(
-                size: $viewModel.model.size,
-                sizeValues: viewModel.model.sizeValues,
-                step: 0.5
-            ) {
-                viewModel.increaseSize()
-            } decreaseAction: {
-                viewModel.decreaseSize()
+                .zIndex(1)
+                .padding(.vertical, 28)
+                
             }
-//            .modifier(CoordinateSpaceFrameProvider(shouldIgnore: onboardingStep != 2, coordinateSpace: .local, frame: { frame in
-//                print("Frame2=", frame)
-//                measuredFrame = frame
-//            }))
-            .onboarding(enabled: onboardingStep == 2, yOffset: -30) {
-                RoundedRectangle(cornerRadius: 10)
-                    .frame(width: UIScreen.main.bounds.width - 24, height: 60)
-            }
-            
-            Button(action: {
-//                viewModel.nextStep()
-                onboardingStep = (onboardingStep + 1) % 3
-                print("Apply size \(viewModel.formatSize())")
-                print("Bounds: ", UIScreen.main.bounds)
-                print("nativeBounds: ", UIScreen.main.nativeBounds)
-                print("Scale: ", UIScreen.main.scale)
-                print("nativeScale: ", UIScreen.main.nativeScale)
-            }, label: {
-                Spacer()
-                Text("Применить размер")
-                    .foregroundColor(.white)
-                Spacer()
+            .padding(.horizontal, 20)
+            .onAppear(perform: {
+                UISlider.appearance().minimumTrackTintColor = .pinkApp
+                UISlider.appearance().setThumbImage(.thumbUnselected, for: .normal)
+                UISlider.appearance().setThumbImage(.thumbSelected, for: .highlighted)
             })
-            .background(
-                RoundedRectangle(cornerRadius: 10)
-                    .frame(height: 56)
-            )
-            .zIndex(1)
-            .padding(.vertical, 28)
-            
         }
-        .padding(.horizontal, 20)
-        .onAppear(perform: {
-            UISlider.appearance().minimumTrackTintColor = .pinkApp
-            UISlider.appearance().setThumbImage(.thumbUnselected, for: .normal)
-            UISlider.appearance().setThumbImage(.thumbSelected, for: .highlighted)
-        })
     }
     
     

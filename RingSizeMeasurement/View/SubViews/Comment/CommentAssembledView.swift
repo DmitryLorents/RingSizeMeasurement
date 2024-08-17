@@ -9,12 +9,14 @@ import SwiftUI
 
 struct CommentAssembledView: View {
     let sideOffset: CGFloat = 20
+    let maxHeight: CGFloat
     var body: some View {
         VStack(spacing: 0) {
-            CommentView() {print("Close button")}
+            CommentView(maxHeight: maxHeight) {print("Close button")}
                 .frame(width: UIScreen.main.bounds.width - 2 * sideOffset)
+                
             CommentPolygonShape()
-                .fill(.white)
+                .fill(.yellow)
                 .frame(width: 20, height: 10)
         }
         .frame(maxHeight: .infinity)
@@ -22,10 +24,11 @@ struct CommentAssembledView: View {
     }
 }
 
-//#Preview {
-//    CommentAssembledView()
-//}
-
 #Preview {
-    RingSizeMeasurementView()
+    CommentAssembledView(maxHeight: 130)
+        
 }
+
+//#Preview {
+//    RingSizeMeasurementView()
+//}
