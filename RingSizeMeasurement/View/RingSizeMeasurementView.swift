@@ -10,7 +10,7 @@ import SwiftUI
 struct RingSizeMeasurementView: View {
     @StateObject private var viewModel = RingSizeMeasurementViewModel()
     @State private var selectedTab = 0
-    @State var onboardingStep = 0 //viewModel.model.onboardingStep
+    @State var onboardingStep = 0 
     @State var measuredFrame: CGRect = .zero
     
     

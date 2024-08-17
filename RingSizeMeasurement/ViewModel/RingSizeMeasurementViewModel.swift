@@ -9,6 +9,7 @@ import UIKit
 
 final class RingSizeMeasurementViewModel: ObservableObject {
     @Published var model: RingMeasurementModel = RingMeasurementModel.createStubModel()
+    @Published var onboardingStep: Int = 0
     
     func increaseSize() {
         if model.size < model.maxValue {
@@ -36,6 +37,6 @@ final class RingSizeMeasurementViewModel: ObservableObject {
     }
     
     func nextStep() {
-        model.onboardingStep = (model.onboardingStep + 1) / model.maxOnboardingSteps
+        onboardingStep = (onboardingStep + 1) / model.maxOnboardingSteps
     }
 }
