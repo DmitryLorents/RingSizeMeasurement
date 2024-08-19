@@ -12,17 +12,37 @@ struct RingSizeMeasurementView: View {
     @State private var selectedTab = 0
     @State var onboardingStep = 0
     @State var measuredFrame: CGRect = .zero
-    
-    
+    private let roundMaskHeight: CGFloat = 280
+    private let sliderMaskHeight: CGFloat = 60
+    private var firstCommentOnboardingOffset: CGFloat {
+        switch selectedTab {
+        case 0:
+            return roundMaskHeight / 2
+        case 1:
+            return viewModel.sizeInMM() / 2
+        default:
+            return 0
+        }
+    }
+    private var secondCommentOnboardingOffset: CGFloat {
+        sliderMaskHeight / 2
+    }
     
     var body: some View {
-        GeometryReader { geometry in
-            let safeAreaTop = geometry.safeAreaInsets.top
-            let roundMaskHeight: CGFloat = 280
-            let maxCommentHeight = UIScreen.main.bounds.height / 2 - safeAreaTop - 40 - (roundMaskHeight / 2)
+//        GeometryReader { geometry in
+//            let safeAreaTop = geometry.safeAreaInsets.top
             
+        let maxCommentHeight: CGFloat = 150//UIScreen.main.bounds.height / 2 - safeAreaTop - 40 - (roundMaskHeight / 2)
+        ZStack {
+//            GeometryReader(content: { geometry in
+//                Color.clear
+//                let safeAreaTop = geometry.safeAreaInsets.top
+//            })
+        
             VStack {
+                
                 Picker("", selection: $selectedTab) {
+                    // TODO: - make indexation by index.
                     ForEach(viewModel.model.tabs, id: \.self) { tabName in
                         let index = viewModel.model.tabs.firstIndex(of: tabName) ?? 0
                         Text(tabName).tag(index)
@@ -39,12 +59,10 @@ struct RingSizeMeasurementView: View {
                 measurementView
                     .overlay(
                         Image(.ring)
-                            .opacity(onboardingStep == 1 ? 1 : 0)
+                            .opacity(onboardingStep == 1 && selectedTab == 0 ? 1 : 0)
                     )
-                    .onboarding(enabled: onboardingStep == 1, yOffset: -140, maxCommentHeight: maxCommentHeight) {
-                        Circle()
-                            .frame(height: roundMaskHeight)
-                        
+                    .onboarding(enabled: onboardingStep == 1, yOffset: -firstCommentOnboardingOffset, maxCommentHeight: maxCommentHeight) {
+                       firstStepOnboardingMask
                     }
                 Spacer()
                 
@@ -62,13 +80,13 @@ struct RingSizeMeasurementView: View {
                 } decreaseAction: {
                     viewModel.decreaseSize()
                 }
-                //            .modifier(CoordinateSpaceFrameProvider(shouldIgnore: onboardingStep != 2, coordinateSpace: .local, frame: { frame in
-                //                print("Frame2=", frame)
-                //                measuredFrame = frame
-                //            }))
-                .onboarding(enabled: onboardingStep == 2, yOffset: -30, maxCommentHeight: maxCommentHeight) {
+                .onboarding(
+                    enabled: onboardingStep == 2 && selectedTab != 1,
+                    yOffset: -sliderMaskHeight / 2,
+                    maxCommentHeight: maxCommentHeight
+                ) {
                     RoundedRectangle(cornerRadius: 10)
-                        .frame(width: UIScreen.main.bounds.width - 24, height: 60)
+                        .frame(width: UIScreen.main.bounds.width - 24, height: sliderMaskHeight)
                 }
                 
                 Button(action: {
@@ -102,6 +120,16 @@ struct RingSizeMeasurementView: View {
         }
     }
     
+    @ViewBuilder var firstStepOnboardingMask: some View {
+        if selectedTab == 0 {
+            Circle()
+                .frame(height: roundMaskHeight)
+        } else {
+            Rectangle()
+                .frame(width: 10_000, height: viewModel.sizeInMM())
+            
+        }
+    }
     
     @ViewBuilder var measurementView: some View {
         switch selectedTab {

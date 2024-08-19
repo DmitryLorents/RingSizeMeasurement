@@ -13,11 +13,13 @@ struct FingerMeasurementView: View {
         
         Image(.fingerMeasurement)
             .resizable()
+            
             .frame(width: UIScreen.main.bounds.width, height: CGFloat(size))
-            .overlay(Image(.hand))
+            .overlay(Image(.hand).offset(x: -20, y: 0))
     }
+        
 }
 
-//#Preview {
-//    FingerMeasurementView(size: 100)
-//}
+#Preview {
+    RingSizeMeasurementView()
+}
