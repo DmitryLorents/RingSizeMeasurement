@@ -9,9 +9,27 @@ import SwiftUI
 
 extension View {
     
+    
+    func printSizeInfo(_ label: String = "") -> some View {
+        background(
+            GeometryReader { proxy in
+                Color.clear
+//                    .task(id: proxy.size) {
+//                        print(label, proxy.size)
+//                    }
+            }
+        )
+    }
+    
     func onboarding(enabled: Bool, yOffset: CGFloat = 0, maxCommentHeight: CGFloat, maskContent: () -> some View) -> some View {
-
+        
         return self
+            .background(
+                GeometryReader(content: { geometry in
+                    Color.clear
+                })
+                    
+            )
             .overlay(
                 Color.black.opacity(0.4)
                     .reverseMask {
@@ -22,32 +40,30 @@ extension View {
             )
             .zIndex(enabled ? 1 : 0)
             .overlay(
-                CommentAssembledView(maxHeight: 100)
-//                    .border(Color.black)
-//                    .frame(height: 10_000)
-                    .frame(minHeight: maxCommentHeight)
-                    .frame(maxHeight: 100)
-//                    .frame(minHeight: .greatestFiniteMagnitude)
-                    .offset(x: 0, y: yOffset-80)
-                    .opacity(enabled ? 1 : 0)
-                    .zIndex(enabled ? 1 : 0)
-            )
-        
+                    CommentAssembledView(maxHeight: 100)
+                    //                    .frame(height: 10_000)
+                        .frame(minHeight: maxCommentHeight)
+//                        .frame(maxHeight: 100)
+                        .offset(x: 0, y: yOffset-80)
+                        .opacity(enabled ? 1 : 0)
+                        .zIndex(enabled ? 1 : 0)
+                
+                )
     }
-        
+    
     
     @inlinable func reverseMask<Mask: View>(
         alignment: Alignment = .center,
         @ViewBuilder _ mask: () -> Mask
     ) -> some View {
-            self.mask(
-                ZStack {
-                    Rectangle()
-                    mask()
-                        .blendMode(.destinationOut)
-                }
-            )
-        }
+        self.mask(
+            ZStack {
+                Rectangle()
+                mask()
+                    .blendMode(.destinationOut)
+            }
+        )
+    }
 }
 
 #Preview {

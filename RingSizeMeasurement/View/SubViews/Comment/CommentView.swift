@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct CommentView: View {
-    let maxHeight: CGFloat
+//    let maxHeight: CGFloat
     let closeButtonAction: () -> Void
+//    let nextButtonAction: () -> Void
+//    let previosButtonAction: () -> Void
+//    let nextButtonTitle: String
+//    let previousButtonTitle: String
     
     var body: some View {
         VStack {
@@ -17,10 +21,9 @@ struct CommentView: View {
                 
                 Text("Отрегулируйте размер красного круга так, чтобы он занял все внутреннее пространство кольца Отрегулируйте размер красного круга так, чтобы он занял все внутреннее пространство кольца Отрегулируйте размер красного круга так, чтобы он занял все внутреннее пространство кольца ")
                     .multilineTextAlignment(.leading)
-                    .allowsTightening(true)
+                    .lineLimit(5)
                     .padding(.trailing, 10)
-//                    .layoutPriority(2)
-//                    .lineLimit(5)
+
                 Spacer()
                 Button(action: {
                     print("Close button")
@@ -65,5 +68,5 @@ struct CommentView: View {
 }
 
 #Preview {
-    CommentView(maxHeight: 130) {print("Close button")}
+    CommentView() {print("Close button")}
 }
