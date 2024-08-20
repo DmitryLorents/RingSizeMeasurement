@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RingSizeMeasurementView: View {
     @StateObject private var viewModel = RingSizeMeasurementViewModel()
-    @State private var selectedTab = 0
+    @State private var selectedTab = 1
     @State var onboardingStep = 0
     @State var measuredFrame: CGRect = .zero
     private let roundMaskHeight: CGFloat = 280
@@ -29,94 +29,97 @@ struct RingSizeMeasurementView: View {
     }
     
     var body: some View {
-//        GeometryReader { geometry in
-//            let safeAreaTop = geometry.safeAreaInsets.top
+        GeometryReader { geometry in
+            let safeAreaTop = geometry.safeAreaInsets.top
             
-        let maxCommentHeight: CGFloat = 150//UIScreen.main.bounds.height / 2 - safeAreaTop - 40 - (roundMaskHeight / 2)
-        ZStack {
-//            GeometryReader(content: { geometry in
-//                Color.clear
-//                let safeAreaTop = geometry.safeAreaInsets.top
-//            })
-        
-            VStack {
+            let maxCommentHeight: CGFloat = 150//UIScreen.main.bounds.height / 2 - safeAreaTop - 40 - (roundMaskHeight / 2)
+            ZStack {
+                //            GeometryReader(content: { geometry in
+                //                Color.clear
+                //                let safeAreaTop = geometry.safeAreaInsets.top
+                //            })
                 
-                Picker("", selection: $selectedTab) {
-                    // TODO: - make indexation by index.
-                    ForEach(viewModel.model.tabs, id: \.self) { tabName in
-                        let index = viewModel.model.tabs.firstIndex(of: tabName) ?? 0
-                        Text(tabName).tag(index)
+                VStack {
+                    
+                    Picker("", selection: $selectedTab) {
+                        // TODO: - make indexation by index.
+                        ForEach(viewModel.model.tabs, id: \.self) { tabName in
+                            let index = viewModel.model.tabs.firstIndex(of: tabName) ?? 0
+                            Text(tabName).tag(index)
+                        }
+                        
+                    }
+                    .pickerStyle(.segmented)
+                    
+                    Text("Отрегулируйте красную область, чтобы она заняла все внутреннее пространство кольца")
+                        .padding(.vertical, 16)
+                    
+                    
+                    Spacer()
+                    measurementView
+                        .overlay(
+                            Image(.ring)
+                                .opacity(onboardingStep == 1 && selectedTab == 0 ? 1 : 0)
+                        )
+                        .onboarding(enabled: onboardingStep == 1, yOffset: -firstCommentOnboardingOffset, maxCommentHeight: maxCommentHeight) {
+                            firstStepOnboardingMask
+                        }
+                    Spacer()
+                    
+                    Text(
+                        viewModel.formatSize()
+                    )
+                    Text("размер")
+                    
+                    SizeChangeView(
+                        size: $viewModel.model.size,
+                        sizeValues: viewModel.model.sizeValues,
+                        step: 0.5
+                    ) {
+                        viewModel.increaseSize()
+                    } decreaseAction: {
+                        viewModel.decreaseSize()
+                    }
+                    .valueChanged(value: viewModel.model.size, onChange: { _ in
+                        UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
+                    })
+                    .onboarding(
+                        enabled: onboardingStep == 2 && selectedTab != 1,
+                        yOffset: -sliderMaskHeight / 2,
+                        maxCommentHeight: maxCommentHeight
+                    ) {
+                        RoundedRectangle(cornerRadius: 10)
+                            .frame(width: UIScreen.main.bounds.width - 24, height: sliderMaskHeight)
                     }
                     
-                }
-                .pickerStyle(.segmented)
-                
-                Text("Отрегулируйте красную область, чтобы она заняла все внутреннее пространство кольца")
-                    .padding(.vertical, 16)
-                
-                
-                Spacer()
-                measurementView
-                    .overlay(
-                        Image(.ring)
-                            .opacity(onboardingStep == 1 && selectedTab == 0 ? 1 : 0)
+                    Button(action: {
+                        onboardingStep = (onboardingStep + 1) % 3
+                        print("Apply size \(viewModel.formatSize())")
+                        print("Bounds: ", UIScreen.main.bounds)
+                        print("nativeBounds: ", UIScreen.main.nativeBounds)
+                        print("Scale: ", UIScreen.main.scale)
+                        print("nativeScale: ", UIScreen.main.nativeScale)
+                    }, label: {
+                        Spacer()
+                        Text("Применить размер")
+                            .foregroundColor(.white)
+                        Spacer()
+                    })
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .frame(height: 56)
                     )
-                    .onboarding(enabled: onboardingStep == 1, yOffset: -firstCommentOnboardingOffset, maxCommentHeight: maxCommentHeight) {
-                       firstStepOnboardingMask
-                    }
-                Spacer()
-                
-                Text(
-                    viewModel.formatSize()
-                )
-                Text("размер")
-                
-                SizeChangeView(
-                    size: $viewModel.model.size,
-                    sizeValues: viewModel.model.sizeValues,
-                    step: 0.5
-                ) {
-                    viewModel.increaseSize()
-                } decreaseAction: {
-                    viewModel.decreaseSize()
+                    .zIndex(1)
+                    .padding(.vertical, 28)
+                    
                 }
-                .onboarding(
-                    enabled: onboardingStep == 2 && selectedTab != 1,
-                    yOffset: -sliderMaskHeight / 2,
-                    maxCommentHeight: maxCommentHeight
-                ) {
-                    RoundedRectangle(cornerRadius: 10)
-                        .frame(width: UIScreen.main.bounds.width - 24, height: sliderMaskHeight)
-                }
-                
-                Button(action: {
-                    //                viewModel.nextStep()
-                    onboardingStep = (onboardingStep + 1) % 3
-                    print("Apply size \(viewModel.formatSize())")
-                    print("Bounds: ", UIScreen.main.bounds)
-                    print("nativeBounds: ", UIScreen.main.nativeBounds)
-                    print("Scale: ", UIScreen.main.scale)
-                    print("nativeScale: ", UIScreen.main.nativeScale)
-                }, label: {
-                    Spacer()
-                    Text("Применить размер")
-                        .foregroundColor(.white)
-                    Spacer()
-                })
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .frame(height: 56)
-                )
-                .zIndex(1)
-                .padding(.vertical, 28)
-                
+                .padding(.horizontal, 20)
+//                .onAppear(perform: {
+//                    UISlider.appearance().minimumTrackTintColor = .pinkApp
+//                    UISlider.appearance().setThumbImage(.thumbUnselected, for: .normal)
+//                    UISlider.appearance().setThumbImage(.thumbSelected, for: .highlighted)
+//                })
             }
-            .padding(.horizontal, 20)
-            .onAppear(perform: {
-                UISlider.appearance().minimumTrackTintColor = .pinkApp
-                UISlider.appearance().setThumbImage(.thumbUnselected, for: .normal)
-                UISlider.appearance().setThumbImage(.thumbSelected, for: .highlighted)
-            })
         }
     }
     

@@ -6,20 +6,9 @@
 //
 
 import SwiftUI
+import Combine
 
 extension View {
-    
-    
-    func printSizeInfo(_ label: String = "") -> some View {
-        background(
-            GeometryReader { proxy in
-                Color.clear
-//                    .task(id: proxy.size) {
-//                        print(label, proxy.size)
-//                    }
-            }
-        )
-    }
     
     func onboarding(enabled: Bool, yOffset: CGFloat = 0, maxCommentHeight: CGFloat, maskContent: () -> some View) -> some View {
         
@@ -28,7 +17,7 @@ extension View {
                 GeometryReader(content: { geometry in
                     Color.clear
                 })
-                    
+                
             )
             .overlay(
                 Color.black.opacity(0.4)
@@ -40,15 +29,15 @@ extension View {
             )
             .zIndex(enabled ? 1 : 0)
             .overlay(
-                    CommentAssembledView(maxHeight: 100)
-                    //                    .frame(height: 10_000)
-                        .frame(minHeight: maxCommentHeight)
-//                        .frame(maxHeight: 100)
-                        .offset(x: 0, y: yOffset-80)
-                        .opacity(enabled ? 1 : 0)
-                        .zIndex(enabled ? 1 : 0)
+                CommentAssembledView(maxHeight: 100)
+                //                    .frame(height: 10_000)
+                    .frame(minHeight: maxCommentHeight)
+                //                        .frame(maxHeight: 100)
+                    .offset(x: 0, y: yOffset-80)
+                    .opacity(enabled ? 1 : 0)
+                    .zIndex(enabled ? 1 : 0)
                 
-                )
+            )
     }
     
     
@@ -63,6 +52,19 @@ extension View {
                     .blendMode(.destinationOut)
             }
         )
+    }
+    
+    /// Choosing correct .onChange implementation depending on iOS version
+    @ViewBuilder func valueChanged<T: Equatable>(value: T, onChange: @escaping (T) -> Void) -> some View {
+        if #available(iOS 17.0, *) {
+            self.onChange(of: value) { oldValue, newValue in
+                onChange(value)
+            }
+        } else {
+            self.onChange(of: value, perform: { value in
+                onChange(value)
+            })
+        }
     }
 }
 

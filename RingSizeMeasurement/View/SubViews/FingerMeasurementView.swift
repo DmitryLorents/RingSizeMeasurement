@@ -15,7 +15,10 @@ struct FingerMeasurementView: View {
             .resizable()
             
             .frame(width: UIScreen.main.bounds.width, height: CGFloat(size))
-            .overlay(Image(.hand).offset(x: -20, y: 0))
+            .overlay(
+                Image(.hand).offset(x: -20, y: 0)
+                    .clipped()
+            )
     }
         
 }
