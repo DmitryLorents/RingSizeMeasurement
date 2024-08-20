@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RingSizeMeasurementView: View {
     @StateObject private var viewModel = RingSizeMeasurementViewModel()
-    @State private var selectedTab = 0
+    @State private var selectedTab = 1
     @State var onboardingStep = 0
     @State var measuredFrame: CGRect = .zero
     private let roundMaskHeight: CGFloat = 280
@@ -32,12 +32,12 @@ struct RingSizeMeasurementView: View {
     
     var body: some View {
         GeometryReader { geometry in
-                        let safeAreaTop = geometry.safeAreaInsets.top
+            let safeAreaTop = geometry.safeAreaInsets.top
             
             let maxCommentHeight: CGFloat = UIScreen.main.bounds.height / 2 - safeAreaTop - 2 * horizontalInset - (roundMaskHeight / 2)
             
             
-            VStack {
+            VStack() {
                 
                 Picker("", selection: $selectedTab) {
                     // TODO: - make indexation by index.
@@ -48,13 +48,16 @@ struct RingSizeMeasurementView: View {
                     
                 }
                 .pickerStyle(.segmented)
+                .padding(.horizontal, 20)
                 
                 Text("Отрегулируйте красную область, чтобы она заняла все внутреннее пространство кольца")
                     .padding(.vertical, 16)
+                    .padding(.horizontal, 20)
                 
                 
                 Spacer()
                 measurementView
+                    .padding(.horizontal, 0)
                     .overlay(
                         Image(.ring)
                             .opacity(onboardingStep == 1 && selectedTab == 0 ? 1 : 0)
@@ -67,6 +70,7 @@ struct RingSizeMeasurementView: View {
                 Text(
                     viewModel.formatSize()
                 )
+                
                 Text("размер")
                 
                 SizeChangeView(
@@ -78,6 +82,7 @@ struct RingSizeMeasurementView: View {
                 } decreaseAction: {
                     viewModel.decreaseSize()
                 }
+                .padding(.horizontal, 20)
                 .valueChanged(value: viewModel.model.size, onChange: { _ in
                     UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
                 })
@@ -109,9 +114,10 @@ struct RingSizeMeasurementView: View {
                 )
                 .zIndex(1)
                 .padding(.vertical, 28)
+                .padding(.horizontal, 20)
                 
             }
-            .padding(.horizontal, 20)
+            
         }
     }
     
