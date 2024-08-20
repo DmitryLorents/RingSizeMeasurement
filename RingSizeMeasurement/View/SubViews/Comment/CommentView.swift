@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CommentView: View {
     let sideOffset: CGFloat = 20
-    let maxHeight: CGFloat
+//    let maxHeight: CGFloat
     let closeButtonAction: () -> Void
 //    let nextButtonAction: () -> Void
 //    let previosButtonAction: () -> Void
@@ -69,7 +69,6 @@ struct CommentView: View {
                 .fill(.yellow)
                 .frame(width: 20, height: 10)
         }
-//        .padding(.zero)
         
         
         
@@ -77,5 +76,5 @@ struct CommentView: View {
 }
 
 #Preview {
-    CommentView(maxHeight: 200) {print("Close button")}
+    CommentView() {print("Close button")}
 }

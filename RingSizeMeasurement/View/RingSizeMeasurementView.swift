@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RingSizeMeasurementView: View {
     @StateObject private var viewModel = RingSizeMeasurementViewModel()
-    @State private var selectedTab = 1
+    @State private var selectedTab = 0
     @State var onboardingStep = 0
     @State var measuredFrame: CGRect = .zero
     private let roundMaskHeight: CGFloat = 280
@@ -19,9 +19,10 @@ struct RingSizeMeasurementView: View {
     private var firstCommentOnboardingOffset: CGFloat {
         switch selectedTab {
         case 0:
-            return roundMaskHeight / 2
+            return roundMaskHeight / 2 + 10
         case 1:
-            return viewModel.sizeInMM() / 2
+            print("Size in mm:", viewModel.sizeInMM())
+            return viewModel.sizeInMM() / 2 + 10
         default:
             return 0
         }
@@ -34,7 +35,17 @@ struct RingSizeMeasurementView: View {
         GeometryReader { geometry in
             let safeAreaTop = geometry.safeAreaInsets.top
             
-            let maxCommentHeight: CGFloat = UIScreen.main.bounds.height / 2 - safeAreaTop - 2 * horizontalInset - (roundMaskHeight / 2)
+            var maxCommentHeight: CGFloat {
+                switch selectedTab {
+                case 0:
+                    geometry.frame(in: .global).height / 2 - safeAreaTop - 2 * verticalInset - (roundMaskHeight / 2)
+                case 1:
+                    geometry.frame(in: .global).height / 2 - safeAreaTop - 2 * verticalInset - (viewModel.sizeInMM() / 2)
+                default:
+                    0
+                }
+            } 
+//                UIScreen.main.bounds.height / 2 - safeAreaTop - 2 * horizontalInset - (roundMaskHeight / 2)
             
             
             VStack() {
@@ -98,10 +109,6 @@ struct RingSizeMeasurementView: View {
                 Button(action: {
                     onboardingStep = (onboardingStep + 1) % 3
                     print("Apply size \(viewModel.formatSize())")
-                    print("Bounds: ", UIScreen.main.bounds)
-                    print("nativeBounds: ", UIScreen.main.nativeBounds)
-                    print("Scale: ", UIScreen.main.scale)
-                    print("nativeScale: ", UIScreen.main.nativeScale)
                 }, label: {
                     Spacer()
                     Text("Применить размер")
