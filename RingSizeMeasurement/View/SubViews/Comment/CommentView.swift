@@ -61,12 +61,12 @@ struct CommentView: View {
             .padding(12)
             .background(
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(.yellow)
+                    .fill(.white)
             )
             .frame(width: UIScreen.main.bounds.width - 2 * sideOffset)
             
             CommentPolygonShape()
-                .fill(.yellow)
+                .fill(.white)
                 .frame(width: 20, height: 10)
         }
         

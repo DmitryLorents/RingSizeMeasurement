@@ -11,29 +11,28 @@ struct FingerMeasurementView: View {
     @Binding var size: Float
     var body: some View {
         
-//        ZStack(alignment: .leading) {
-//            Image(.fingerMeasurement)
-//                .resizable()
-//                .frame(maxWidth: .infinity)
-//                .frame(height: CGFloat(size))
-//            
-//            Image(.hand)
-//        }
+        //        ZStack(alignment: .leading) {
+        //            Image(.fingerMeasurement)
+        //                .resizable()
+        //                .frame(maxWidth: .infinity)
+        //                .frame(height: CGFloat(size))
+        //
+        //            Image(.hand)
+        //        }
         
         Image(.fingerMeasurement)
             .resizable()
-
             .frame(width: UIScreen.main.bounds.width, height: CGFloat(size))
-            
+        
             .overlay(
                 HStack {
                     Image(.hand)
                     Spacer()
                 }
-               
+                
             )
     }
-        
+    
 }
 
 #Preview {

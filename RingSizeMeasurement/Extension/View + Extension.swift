@@ -11,7 +11,6 @@ import Combine
 extension View {
     
     func onboarding(enabled: Bool, yOffset: CGFloat = 20, maxCommentHeight: CGFloat, maskContent: () -> some View) -> some View {
-        print("MaxCommentHeight: ", maxCommentHeight)
         return self
             .background(
                 GeometryReader(content: { geometry in
@@ -33,7 +32,7 @@ extension View {
 //                                    .frame(height: 10_000)
                     .frame(minHeight: maxCommentHeight)
 //                                        .frame(maxHeight: 100)
-                    .offset(x: 0, y: -maxCommentHeight / 2 - yOffset )//yOffset-80)
+                    .offset(x: 0, y: -(maxCommentHeight / 2 + yOffset) )
                     .opacity(enabled ? 1 : 0)
                     .zIndex(enabled ? 1 : 0)
                 

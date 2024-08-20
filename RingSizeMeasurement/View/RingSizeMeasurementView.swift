@@ -10,25 +10,24 @@ import SwiftUI
 struct RingSizeMeasurementView: View {
     @StateObject private var viewModel = RingSizeMeasurementViewModel()
     @State private var selectedTab = 0
-    @State var onboardingStep = 0
-    @State var measuredFrame: CGRect = .zero
+    @State private var onboardingStep = 0
     private let roundMaskHeight: CGFloat = 280
     private let sliderMaskHeight: CGFloat = 60
-    private let horizontalInset: CGFloat = 20
-    private let verticalInset: CGFloat = 20
+    private let commentMaxHeightVerticalInset: CGFloat = 20
+    private let onboardingCommentVerticalOffset: CGFloat = 10
     private var firstCommentOnboardingOffset: CGFloat {
         switch selectedTab {
         case 0:
-            return roundMaskHeight / 2 + 10
+            return roundMaskHeight / 2 + onboardingCommentVerticalOffset
         case 1:
             print("Size in mm:", viewModel.sizeInMM())
-            return viewModel.sizeInMM() / 2 + 10
+            return viewModel.sizeInMM() / 2 + onboardingCommentVerticalOffset
         default:
             return 0
         }
     }
     private var secondCommentOnboardingOffset: CGFloat {
-        sliderMaskHeight / 2
+        sliderMaskHeight / 2 + onboardingCommentVerticalOffset
     }
     
     var body: some View {
@@ -38,14 +37,13 @@ struct RingSizeMeasurementView: View {
             var maxCommentHeight: CGFloat {
                 switch selectedTab {
                 case 0:
-                    geometry.frame(in: .global).height / 2 - safeAreaTop - 2 * verticalInset - (roundMaskHeight / 2)
+                    geometry.frame(in: .global).height / 2 - safeAreaTop - 2 * commentMaxHeightVerticalInset - (roundMaskHeight / 2)
                 case 1:
-                    geometry.frame(in: .global).height / 2 - safeAreaTop - 2 * verticalInset - (viewModel.sizeInMM() / 2)
+                    geometry.frame(in: .global).height / 2 - safeAreaTop - 2 * commentMaxHeightVerticalInset - (viewModel.sizeInMM() / 2)
                 default:
                     0
                 }
             } 
-//                UIScreen.main.bounds.height / 2 - safeAreaTop - 2 * horizontalInset - (roundMaskHeight / 2)
             
             
             VStack() {
@@ -68,10 +66,11 @@ struct RingSizeMeasurementView: View {
                 
                 Spacer()
                 measurementView
+                    .opacity(onboardingStep != 0 && selectedTab == 0 ? 0 : 1)
                     .padding(.horizontal, 0)
                     .overlay(
                         Image(.ring)
-                            .opacity(onboardingStep == 1 && selectedTab == 0 ? 1 : 0)
+                            .opacity(onboardingStep != 0 && selectedTab == 0 ? 1 : 0)
                     )
                     .onboarding(enabled: onboardingStep == 1, yOffset: firstCommentOnboardingOffset, maxCommentHeight: maxCommentHeight) {
                         firstStepOnboardingMask
