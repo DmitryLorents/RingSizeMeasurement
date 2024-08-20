@@ -14,6 +14,8 @@ struct RingSizeMeasurementView: View {
     @State var measuredFrame: CGRect = .zero
     private let roundMaskHeight: CGFloat = 280
     private let sliderMaskHeight: CGFloat = 60
+    private let horizontalInset: CGFloat = 20
+    private let verticalInset: CGFloat = 20
     private var firstCommentOnboardingOffset: CGFloat {
         switch selectedTab {
         case 0:
@@ -30,9 +32,9 @@ struct RingSizeMeasurementView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            //            let safeAreaTop = geometry.safeAreaInsets.top
+                        let safeAreaTop = geometry.safeAreaInsets.top
             
-            let maxCommentHeight: CGFloat = 150//UIScreen.main.bounds.height / 2 - safeAreaTop - 40 - (roundMaskHeight / 2)
+            let maxCommentHeight: CGFloat = UIScreen.main.bounds.height / 2 - safeAreaTop - 2 * horizontalInset - (roundMaskHeight / 2)
             
             
             VStack {
@@ -57,7 +59,7 @@ struct RingSizeMeasurementView: View {
                         Image(.ring)
                             .opacity(onboardingStep == 1 && selectedTab == 0 ? 1 : 0)
                     )
-                    .onboarding(enabled: onboardingStep == 1, yOffset: -firstCommentOnboardingOffset, maxCommentHeight: maxCommentHeight) {
+                    .onboarding(enabled: onboardingStep == 1, yOffset: firstCommentOnboardingOffset, maxCommentHeight: maxCommentHeight) {
                         firstStepOnboardingMask
                     }
                 Spacer()
@@ -81,7 +83,7 @@ struct RingSizeMeasurementView: View {
                 })
                 .onboarding(
                     enabled: onboardingStep == 2 && selectedTab != 1,
-                    yOffset: -sliderMaskHeight / 2,
+                    yOffset: secondCommentOnboardingOffset,
                     maxCommentHeight: maxCommentHeight
                 ) {
                     RoundedRectangle(cornerRadius: 10)

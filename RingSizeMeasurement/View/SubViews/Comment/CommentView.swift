@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct CommentView: View {
-//    let maxHeight: CGFloat
+    let sideOffset: CGFloat = 20
+    let maxHeight: CGFloat
     let closeButtonAction: () -> Void
 //    let nextButtonAction: () -> Void
 //    let previosButtonAction: () -> Void
@@ -16,51 +17,60 @@ struct CommentView: View {
 //    let previousButtonTitle: String
     
     var body: some View {
-        VStack {
-            HStack(alignment: .top) {
+        VStack(spacing: 0) {
+            
+            VStack {
                 
-                Text("Отрегулируйте размер красного круга так, чтобы он занял все внутреннее пространство кольца Отрегулируйте размер красного круга так, чтобы он занял все внутреннее пространство кольца Отрегулируйте размер красного круга так, чтобы он занял все внутреннее пространство кольца ")
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(5)
-                    .padding(.trailing, 10)
-
-                Spacer()
-                Button(action: {
-                    print("Close button")
-                }, label: {
-                    Image(.closeButton)
-                })
+                HStack(alignment: .top) {
+                    
+                    Text("Отрегулируйте размер красного круга так, чтобы он занял все внутреннее пространство кольцаОтрегулируйте размер красного круга так, чтобы он занял все внутреннее пространство кольца Отрегулируйте размер красного круга так, чтобы он занял все внутреннее пространство кольца  ")
+                        .multilineTextAlignment(.leading)
+//                        .lineLimit(5)
+                        .padding(.trailing, 10)
+                    
+                    Spacer()
+                    Button(action: {
+                        print("Close button")
+                    }, label: {
+                        Image(.closeButton)
+                    })
+                    
+                }
+                
+                HStack {
+                    Image(.onboardingProgress)
+                    Spacer()
+                    OnboardingButtonView(
+                        action: {
+                            print("Button1")
+                        },
+                        label: "Назад",
+                        buttonType: .light
+                    )
+                    
+                    OnboardingButtonView(
+                        action: {
+                            print("Button2")
+                        },
+                        label: "Понятно",
+                        buttonType: .dark
+                    )
+                    
+                }
                 
             }
+            .padding(12)
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(.yellow)
+            )
+            .frame(width: UIScreen.main.bounds.width - 2 * sideOffset)
             
-            HStack {
-                Image(.onboardingProgress)
-                Spacer()
-                OnboardingButtonView(
-                    action: {
-                        print("Button1")
-                    },
-                    label: "Назад",
-                    buttonType: .light
-                )
-                
-                OnboardingButtonView(
-                    action: {
-                        print("Button2")
-                    },
-                    label: "Понятно",
-                    buttonType: .dark
-                )
-                
-            }
-            
-        }
-        .padding(12)
-        .background(
-            RoundedRectangle(cornerRadius: 16)
+            CommentPolygonShape()
                 .fill(.yellow)
-        )
-
+                .frame(width: 20, height: 10)
+        }
+//        .padding(.zero)
         
         
         
@@ -68,5 +78,5 @@ struct CommentView: View {
 }
 
 #Preview {
-    CommentView() {print("Close button")}
+    CommentView(maxHeight: 200) {print("Close button")}
 }

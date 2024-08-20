@@ -29,11 +29,11 @@ extension View {
             )
             .zIndex(enabled ? 1 : 0)
             .overlay(
-                CommentAssembledView(maxHeight: 100)
-                //                    .frame(height: 10_000)
+                CommentView(maxHeight: 100){}
+//                                    .frame(height: 10_000)
                     .frame(minHeight: maxCommentHeight)
-                //                        .frame(maxHeight: 100)
-                    .offset(x: 0, y: yOffset-80)
+//                                        .frame(maxHeight: 100)
+                    .offset(x: 0, y: -maxCommentHeight / 2 - yOffset )//yOffset-80)
                     .opacity(enabled ? 1 : 0)
                     .zIndex(enabled ? 1 : 0)
                 

@@ -160,8 +160,8 @@
 			children = (
 				D98C55922C6E26280078A80E /* OnboardingButtonView.swift */,
 				D98C55902C6E1A580078A80E /* CommentView.swift */,
-				D98C558B2C6DF0C50078A80E /* CommentPolygonShape.swift */,
 				D98C558D2C6DF9DA0078A80E /* CommentAssembledView.swift */,
+				D98C558B2C6DF0C50078A80E /* CommentPolygonShape.swift */,
 				D98C55942C6E27A90078A80E /* ButtonType.swift */,
 			);
 			path = Comment;
