@@ -10,7 +10,7 @@ import Combine
 
 extension View {
     
-    func onboarding(enabled: Bool, yOffset: CGFloat = 20, maxCommentHeight: CGFloat, maskContent: () -> some View) -> some View {
+    func onboarding(enabled: Bool, text: String, yOffset: CGFloat = 20, maxCommentHeight: CGFloat, maskContent: () -> some View) -> some View {
         return self
             .background(
                 GeometryReader(content: { geometry in
@@ -28,7 +28,7 @@ extension View {
             )
             .zIndex(enabled ? 1 : 0)
             .overlay(
-                CommentView(){}
+                CommentView(text: text){}
 //                                    .frame(height: 10_000)
                     .frame(minHeight: maxCommentHeight)
 //                                        .frame(maxHeight: 100)

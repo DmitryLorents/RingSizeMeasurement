@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct RingSizeMeasurementView: View {
     @StateObject private var viewModel = RingSizeMeasurementViewModel()
@@ -20,7 +21,7 @@ struct RingSizeMeasurementView: View {
         case 0:
             return roundMaskHeight / 2 + onboardingCommentVerticalOffset
         case 1:
-            print("Size in mm:", viewModel.sizeInMM())
+//            print("Size in mm:", viewModel.sizeInMM())
             return viewModel.sizeInMM() / 2 + onboardingCommentVerticalOffset
         default:
             return 0
@@ -37,7 +38,10 @@ struct RingSizeMeasurementView: View {
             var maxCommentHeight: CGFloat {
                 switch selectedTab {
                 case 0:
-                    geometry.frame(in: .global).height / 2 - safeAreaTop - 2 * commentMaxHeightVerticalInset - (roundMaskHeight / 2)
+                    geometry.frame(in: .global).height / 2 
+                    - safeAreaTop
+//                    - 2 * commentMaxHeightVerticalInset
+                    - (roundMaskHeight / 2)
                 case 1:
                     geometry.frame(in: .global).height / 2 - safeAreaTop - 2 * commentMaxHeightVerticalInset - (viewModel.sizeInMM() / 2)
                 default:
@@ -72,7 +76,7 @@ struct RingSizeMeasurementView: View {
                         Image(.ring)
                             .opacity(onboardingStep != 0 && selectedTab == 0 ? 1 : 0)
                     )
-                    .onboarding(enabled: onboardingStep == 1, yOffset: firstCommentOnboardingOffset, maxCommentHeight: maxCommentHeight) {
+                    .onboarding(enabled: onboardingStep == 1, text: viewModel.model.onboardingText, yOffset: firstCommentOnboardingOffset, maxCommentHeight: maxCommentHeight) {
                         firstStepOnboardingMask
                     }
                 Spacer()
@@ -98,6 +102,7 @@ struct RingSizeMeasurementView: View {
                 })
                 .onboarding(
                     enabled: onboardingStep == 2 && selectedTab != 1,
+                    text: viewModel.model.onboardingText,
                     yOffset: secondCommentOnboardingOffset,
                     maxCommentHeight: maxCommentHeight
                 ) {
@@ -133,7 +138,7 @@ struct RingSizeMeasurementView: View {
                 .frame(height: roundMaskHeight)
         } else {
             Rectangle()
-                .frame(width: 10_000, height: viewModel.sizeInMM())
+                .frame(width: UIScreen.main.bounds.width, height: viewModel.sizeInMM())
             
         }
     }

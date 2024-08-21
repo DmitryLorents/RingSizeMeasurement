@@ -19,7 +19,6 @@
 		D98C55882C6D28630078A80E /* DiameterMeasurementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55872C6D28630078A80E /* DiameterMeasurementView.swift */; };
 		D98C558A2C6DD2F20078A80E /* SizeChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55892C6DD2F20078A80E /* SizeChangeView.swift */; };
 		D98C558C2C6DF0C50078A80E /* CommentPolygonShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C558B2C6DF0C50078A80E /* CommentPolygonShape.swift */; };
-		D98C558E2C6DF9DA0078A80E /* CommentAssembledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C558D2C6DF9DA0078A80E /* CommentAssembledView.swift */; };
 		D98C55912C6E1A580078A80E /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55902C6E1A580078A80E /* CommentView.swift */; };
 		D98C55932C6E26280078A80E /* OnboardingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55922C6E26280078A80E /* OnboardingButtonView.swift */; };
 		D98C55952C6E27A90078A80E /* ButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55942C6E27A90078A80E /* ButtonType.swift */; };
@@ -42,7 +41,6 @@
 		D98C55872C6D28630078A80E /* DiameterMeasurementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiameterMeasurementView.swift; sourceTree = "<group>"; };
 		D98C55892C6DD2F20078A80E /* SizeChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeChangeView.swift; sourceTree = "<group>"; };
 		D98C558B2C6DF0C50078A80E /* CommentPolygonShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentPolygonShape.swift; sourceTree = "<group>"; };
-		D98C558D2C6DF9DA0078A80E /* CommentAssembledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentAssembledView.swift; sourceTree = "<group>"; };
 		D98C55902C6E1A580078A80E /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		D98C55922C6E26280078A80E /* OnboardingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingButtonView.swift; sourceTree = "<group>"; };
 		D98C55942C6E27A90078A80E /* ButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonType.swift; sourceTree = "<group>"; };
@@ -160,7 +158,6 @@
 			children = (
 				D98C55922C6E26280078A80E /* OnboardingButtonView.swift */,
 				D98C55902C6E1A580078A80E /* CommentView.swift */,
-				D98C558D2C6DF9DA0078A80E /* CommentAssembledView.swift */,
 				D98C558B2C6DF0C50078A80E /* CommentPolygonShape.swift */,
 				D98C55942C6E27A90078A80E /* ButtonType.swift */,
 			);
@@ -264,7 +261,6 @@
 				D98C55882C6D28630078A80E /* DiameterMeasurementView.swift in Sources */,
 				D9E7178D2C732BFA001EEE8D /* CodeExamples.swift in Sources */,
 				D98C557C2C6B9A8D0078A80E /* Tab.swift in Sources */,
-				D98C558E2C6DF9DA0078A80E /* CommentAssembledView.swift in Sources */,
 				D98C55862C6D25AA0078A80E /* FingerMeasurementView.swift in Sources */,
 				D98C555D2C6B507F0078A80E /* RingSizeMeasurementApp.swift in Sources */,
 				D98C55952C6E27A90078A80E /* ButtonType.swift in Sources */,

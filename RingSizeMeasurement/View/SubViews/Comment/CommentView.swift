@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct CommentView: View {
-    let sideOffset: CGFloat = 20
+    var horizontalOffset: CGFloat = 20
+    let text: String
 //    let maxHeight: CGFloat
     let closeButtonAction: () -> Void
 //    let nextButtonAction: () -> Void
@@ -23,7 +24,7 @@ struct CommentView: View {
                 
                 HStack(alignment: .top) {
                     
-                    Text("Отрегулируйте размер красного круга так, чтобы он занял все внутреннее пространство кольцаОтрегулируйте размер красного круга так, чтобы он занял все внутреннее пространство кольца Отрегулируйте размер красного круга так, чтобы он занял все внутреннее пространство кольца  ")
+                    Text(text)
                         .multilineTextAlignment(.leading)
                         .padding(.trailing, 10)
                     
@@ -63,7 +64,7 @@ struct CommentView: View {
                 RoundedRectangle(cornerRadius: 16)
                     .fill(.white)
             )
-            .frame(width: UIScreen.main.bounds.width - 2 * sideOffset)
+            .frame(width: UIScreen.main.bounds.width - 2 * horizontalOffset)
             
             CommentPolygonShape()
                 .fill(.white)
@@ -76,5 +77,5 @@ struct CommentView: View {
 }
 
 #Preview {
-    CommentView() {print("Close button")}
+    CommentView(text: "vbndjkvvnenvelnvnvlknklvnkvernvienvierdomweo") {print("Close button")}
 }

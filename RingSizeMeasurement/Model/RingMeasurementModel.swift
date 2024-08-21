@@ -9,6 +9,7 @@ import UIKit
 
 struct RingMeasurementModel {
     let tabs: [String]
+    let onboardingText: String
     var size: Float
     let sizeStep: Float
     var onboardingStep: Int
@@ -36,6 +37,7 @@ struct RingMeasurementModel {
     static func createStubModel() -> Self {
         RingMeasurementModel(
             tabs: ["По кольцу", "По пальцу"],
+            onboardingText: "Отрегулируйте размер красного круга так, чтобы он занял все внутреннее пространство кольцаОтрегулируйте размер красного круга так, чтобы он занял все внутреннее пространство кольца Отрегулируйте размер красного круга так, чтобы он занял все внутреннее пространство кольца",
             size: 18,
             sizeStep: 0.5,
             onboardingStep: 0,
