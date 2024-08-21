@@ -29,9 +29,7 @@ extension View {
             .zIndex(enabled ? 1 : 0)
             .overlay(
                 CommentView(text: text){}
-//                                    .frame(height: 10_000)
                     .frame(minHeight: maxCommentHeight)
-//                                        .frame(maxHeight: 100)
                     .offset(x: 0, y: -(maxCommentHeight / 2 + yOffset) )
                     .opacity(enabled ? 1 : 0)
                     .zIndex(enabled ? 1 : 0)
