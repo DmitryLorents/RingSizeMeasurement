@@ -19,12 +19,11 @@ struct RingSizeMeasurementView: View {
     private var firstCommentOnboardingOffset: CGFloat {
         switch selectedTab {
         case 0:
-            return roundMaskHeight / 2 + onboardingCommentVerticalOffset
+            roundMaskHeight / 2 + onboardingCommentVerticalOffset
         case 1:
-//            print("Size in mm:", viewModel.sizeInMM())
-            return viewModel.sizeInMM() / 2 + onboardingCommentVerticalOffset
+            viewModel.sizeInMM() / 2 + onboardingCommentVerticalOffset
         default:
-            return 0
+            0
         }
     }
     private var secondCommentOnboardingOffset: CGFloat {
@@ -76,7 +75,14 @@ struct RingSizeMeasurementView: View {
                         Image(.ring)
                             .opacity(onboardingStep != 0 && selectedTab == 0 ? 1 : 0)
                     )
-                    .onboarding(enabled: onboardingStep == 1, text: viewModel.model.onboardingText, yOffset: firstCommentOnboardingOffset, maxCommentHeight: maxCommentHeight) {
+                    .onboarding(
+                        maxOnboardingSteps: 2,
+                        onboardingStep: $onboardingStep,
+                        enabled: onboardingStep == 1,
+                        text: viewModel.model.onboardingText,
+                        yOffset: firstCommentOnboardingOffset,
+                        maxCommentHeight: maxCommentHeight
+                    ) {
                         firstStepOnboardingMask
                     }
                 Spacer()
@@ -101,6 +107,8 @@ struct RingSizeMeasurementView: View {
                     UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
                 })
                 .onboarding(
+                    maxOnboardingSteps: 2,
+                    onboardingStep: $onboardingStep,
                     enabled: onboardingStep == 2 && selectedTab != 1,
                     text: viewModel.model.onboardingText,
                     yOffset: secondCommentOnboardingOffset,
