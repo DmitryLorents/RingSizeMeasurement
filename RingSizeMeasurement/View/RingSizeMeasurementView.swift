@@ -16,6 +16,9 @@ struct RingSizeMeasurementView: View {
     private let sliderMaskHeight: CGFloat = 60
     private let commentMaxHeightVerticalInset: CGFloat = 20
     private let onboardingCommentVerticalOffset: CGFloat = 10
+    private var maxOnboardingSteps: Int {
+        selectedTab == 0 ? 2 : 1
+    }
     private var firstCommentOnboardingOffset: CGFloat {
         switch selectedTab {
         case 0:
@@ -62,7 +65,7 @@ struct RingSizeMeasurementView: View {
                 .pickerStyle(.segmented)
                 .padding(.horizontal, 20)
                 
-                Text("Отрегулируйте красную область, чтобы она заняла все внутреннее пространство кольца")
+                Text("Отрегулируйте красную область, чтобы она заняла все внутреннее пространство кольца. Onboarding step: \(onboardingStep)")
                     .padding(.vertical, 16)
                     .padding(.horizontal, 20)
                 
@@ -76,7 +79,7 @@ struct RingSizeMeasurementView: View {
                             .opacity(onboardingStep != 0 && selectedTab == 0 ? 1 : 0)
                     )
                     .onboarding(
-                        maxOnboardingSteps: 2,
+                        maxOnboardingSteps: maxOnboardingSteps,
                         onboardingStep: $onboardingStep,
                         enabled: onboardingStep == 1,
                         text: viewModel.model.onboardingText,
@@ -107,7 +110,7 @@ struct RingSizeMeasurementView: View {
                     UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
                 })
                 .onboarding(
-                    maxOnboardingSteps: 2,
+                    maxOnboardingSteps: maxOnboardingSteps,
                     onboardingStep: $onboardingStep,
                     enabled: onboardingStep == 2 && selectedTab != 1,
                     text: viewModel.model.onboardingText,
@@ -119,7 +122,7 @@ struct RingSizeMeasurementView: View {
                 }
                 
                 Button(action: {
-                    onboardingStep = (onboardingStep + 1) % 3
+                    onboardingStep = (onboardingStep + 1) % (maxOnboardingSteps + 1)
                     print("Apply size \(viewModel.formatSize())")
                 }, label: {
                     Spacer()

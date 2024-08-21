@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct CommentView: View {
+    @Binding private var onboardingStep: Int
     var horizontalOffset: CGFloat
     let text: String
     var maxOnboardingSteps: Int
-    @Binding private var onboardingStep: Int
     var closeButtonAction: (() -> Void)?
     
     init(horizontalOffset: CGFloat = 20,
+         onboardingStep: Binding<Int>,
          text: String,
          maxOnboardingSteps: Int,
-         onboardingStep: Binding<Int>,
-         closeButtonAction: @escaping () -> Void) {
+         closeButtonAction: (() -> Void)? = nil
+    ) {
         self.horizontalOffset = horizontalOffset
         self.text = text
         self.maxOnboardingSteps = maxOnboardingSteps
@@ -54,22 +55,7 @@ struct CommentView: View {
                     HStack {
                         buttons
                     }
-                    //                    OnboardingButtonView(
-                    //                        action: {
-                    //                            print("Button1")
-                    //                        },
-                    //                        label: "Назад",
-                    //                        buttonType: .light
-                    //                    )
-                    //
-                    //                    OnboardingButtonView(
-                    //                        action: {
-                    //                            print("Button2")
-                    //                        },
-                    //                        label: "Понятно",
-                    //                        buttonType: .dark
-                    //                    )
-                    //
+                   
                 }
                 
             }
@@ -93,21 +79,13 @@ struct CommentView: View {
     var darkButtonText: String {
         maxOnboardingSteps == onboardingStep ? "Понятно" : "Далее"
     }
-    
-    
-    
-    var darkButtonAction: () -> Void {
-        maxOnboardingSteps == onboardingStep
-        ? closeButtonActionUnwrapped
-        : {onboardingStep = (onboardingStep + 1) / maxOnboardingSteps}
-    }
  
     @ViewBuilder var buttons: some View {
         switch onboardingStep {
         case 1:
             OnboardingButtonView(
                 action: {
-                    darkButtonAction()
+                    nextButtonAction()
                 },
                 label: darkButtonText,
                 buttonType: .dark
@@ -115,7 +93,7 @@ struct CommentView: View {
         case 2:
             OnboardingButtonView(
                 action: {
-                    
+                    previousButtonAction()
                 },
                 label: "Назад",
                 buttonType: .light
@@ -123,7 +101,7 @@ struct CommentView: View {
             
             OnboardingButtonView(
                 action: {
-                    darkButtonAction()
+                    nextButtonAction()
                 },
                 label: "Понятно",
                 buttonType: .dark
@@ -131,8 +109,6 @@ struct CommentView: View {
         default:
             EmptyView()
         }
-        
-        
         
     }
     
@@ -148,8 +124,8 @@ struct CommentView: View {
     func previousButtonAction() {
         onboardingStep -= 1
     }
+    
+    func nextButtonAction() -> Void {
+        onboardingStep = (onboardingStep + 1) % (maxOnboardingSteps + 1)
+    }
 }
-
-//#Preview {
-//    CommentView(text: "vbndjkvvnenvelnvnvlknklvnkvernvienvierdomweo") {print("Close button")}
-//}

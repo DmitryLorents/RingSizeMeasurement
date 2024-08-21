@@ -20,12 +20,6 @@ extension View {
         maskContent: () -> some View
     ) -> some View {
         return self
-            .background(
-                GeometryReader(content: { geometry in
-                    Color.clear
-                })
-                
-            )
             .overlay(
                 Color.black.opacity(0.4)
                     .reverseMask {
@@ -36,10 +30,10 @@ extension View {
             )
             .zIndex(enabled ? 1 : 0)
             .overlay(
-                CommentView(text: text,
-                            maxOnboardingSteps: maxOnboardingSteps,
-                            onboardingStep: onboardingStep,
-                            closeButtonAction: {})
+                CommentView(onboardingStep: onboardingStep,
+                            text: text,
+                            maxOnboardingSteps: maxOnboardingSteps
+                           )
                     .frame(minHeight: maxCommentHeight)
                     .offset(x: 0, y: -(maxCommentHeight / 2 + yOffset) )
                     .opacity(enabled ? 1 : 0)

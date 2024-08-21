@@ -94,3 +94,45 @@ extension View {
 //            .frame(width: 100, height: 100)
 //    }
 //}
+
+
+struct MainView: View {
+    @State private var property: Int = 0
+    var body: some View {
+        VStack {
+            RoundedRectangle(cornerRadius: 20)
+                .frame(width: 200, height: 200)
+                .modifyView(bindingProperty: $property)
+            Text("MainView counter: \(property)")
+        }
+    }
+}
+
+extension View {
+    func modifyView(bindingProperty: Binding<Int>) -> some View {
+        self
+            .overlay(
+            OverlayView(bindingProperty: bindingProperty)
+            )
+    }
+}
+
+struct OverlayView: View {
+    @Binding private var bindingProperty: Int
+    
+    init(bindingProperty: Binding<Int>) {
+        _bindingProperty = bindingProperty
+    }
+    var body: some View {
+        Button(action: {
+            bindingProperty += 1
+        }, label: {
+            Text("Counter: \(bindingProperty)")
+                .foregroundColor(.white)
+        })
+    }
+}
+
+#Preview {
+    MainView()
+}
