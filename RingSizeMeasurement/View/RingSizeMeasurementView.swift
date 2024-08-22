@@ -24,13 +24,13 @@ struct RingSizeMeasurementView: View {
         case 0:
             roundMaskHeight / 2 + onboardingCommentVerticalOffset
         case 1:
-            viewModel.sizeInMM() / 2 + onboardingCommentVerticalOffset
+            viewModel.sizeInMM() / 2  + onboardingCommentVerticalOffset
         default:
             0
         }
     }
     private var secondCommentOnboardingOffset: CGFloat {
-        sliderMaskHeight / 2 + onboardingCommentVerticalOffset
+        sliderMaskHeight / 2
     }
     
     var body: some View {
@@ -42,10 +42,13 @@ struct RingSizeMeasurementView: View {
                 case 0:
                     geometry.frame(in: .global).height / 2 
                     - safeAreaTop
-//                    - 2 * commentMaxHeightVerticalInset
+                    - 2 * commentMaxHeightVerticalInset
                     - (roundMaskHeight / 2)
                 case 1:
-                    geometry.frame(in: .global).height / 2 - safeAreaTop - 2 * commentMaxHeightVerticalInset - (viewModel.sizeInMM() / 2)
+                    geometry.frame(in: .global).height / 2 
+                    - safeAreaTop 
+                    - 2 * commentMaxHeightVerticalInset
+                    - (viewModel.sizeInMM() / 2)
                 default:
                     0
                 }
@@ -65,7 +68,7 @@ struct RingSizeMeasurementView: View {
                 .pickerStyle(.segmented)
                 .padding(.horizontal, 20)
                 
-                Text("Отрегулируйте красную область, чтобы она заняла все внутреннее пространство кольца. Onboarding step: \(onboardingStep)")
+                Text("Отрегулируйте красную область, чтобы она заняла все внутреннее пространство кольца. Onboarding step: ")
                     .padding(.vertical, 16)
                     .padding(.horizontal, 20)
                 
@@ -82,7 +85,7 @@ struct RingSizeMeasurementView: View {
                         maxOnboardingSteps: maxOnboardingSteps,
                         onboardingStep: $onboardingStep,
                         enabled: onboardingStep == 1,
-                        text: viewModel.model.onboardingText,
+                        text: getOnboardingText(),
                         yOffset: firstCommentOnboardingOffset,
                         maxCommentHeight: maxCommentHeight
                     ) {
@@ -113,7 +116,7 @@ struct RingSizeMeasurementView: View {
                     maxOnboardingSteps: maxOnboardingSteps,
                     onboardingStep: $onboardingStep,
                     enabled: onboardingStep == 2 && selectedTab != 1,
-                    text: viewModel.model.onboardingText,
+                    text: getOnboardingText(),
                     yOffset: secondCommentOnboardingOffset,
                     maxCommentHeight: maxCommentHeight
                 ) {
@@ -163,6 +166,21 @@ struct RingSizeMeasurementView: View {
         default:
             EmptyView()
         }
+    }
+    
+    private func getOnboardingText() -> String {
+      let index =  switch (onboardingStep, maxOnboardingSteps) {
+        case (1,2):
+            0
+      case (2,2):
+          1
+      case (1,1):
+          2
+      default: 0
+        }
+        let texts = viewModel.model.onboardingTexts
+        guard index < texts.count else {return ""}
+        return texts[index]
     }
 }
 

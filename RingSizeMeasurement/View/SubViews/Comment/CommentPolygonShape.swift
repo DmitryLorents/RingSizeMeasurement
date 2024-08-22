@@ -12,7 +12,6 @@ struct CommentPolygonShape: Shape {
     
     func path(in rect: CGRect) -> Path {
         
-        let midX = rect.midX
         let maxX = rect.maxX
         let maxY = rect.maxY
         

@@ -13,6 +13,7 @@ struct CommentView: View {
     let text: String
     var maxOnboardingSteps: Int
     var closeButtonAction: (() -> Void)?
+    @State private var frame: CGRect = .zero
     
     init(
         onboardingStep: Binding<Int>,
@@ -30,48 +31,58 @@ struct CommentView: View {
     
     
     var body: some View {
-        VStack(spacing: 0) {
-            
-            VStack {
-                
-                HStack(alignment: .top) {
-                    
-                    Text(text)
-                        .multilineTextAlignment(.leading)
-                        .padding(.trailing, 10)
-                    
-                    Spacer()
-                    Button(action: {
-                        closeButtonActionUnwrapped()
-                    }, label: {
-                        Image(.closeButton)
-                    })
-                    
+        ZStack {
+            GeometryReader { geometry -> Color in
+                Task {
+                    frame = geometry.frame(in: .local)
                 }
-                
-                HStack {
-                    Image(onboardingSliderImage)
-                        .opacity(maxOnboardingSteps == 1 ? 0 : 1)
-                    Spacer()
-                    HStack {
-                        buttons
-                    }
-                   
-                }
-                
+                return Color.clear
             }
-            .padding(12)
-            .background(
-                RoundedRectangle(cornerRadius: 16)
+            VStack(spacing: 0) {
+                
+                VStack {
+                    
+                    HStack(alignment: .top) {
+                        
+                        Text(text)
+                            .multilineTextAlignment(.leading)
+                            .padding(.trailing, 10)
+                        
+                        Spacer()
+                        Button(action: {
+                            closeButtonActionUnwrapped()
+                        }, label: {
+                            Image(.closeButton)
+                        })
+                        
+                    }
+                    
+                    HStack {
+                        Image(onboardingSliderImage)
+                            .opacity(maxOnboardingSteps == 1 ? 0 : 1)
+                        Spacer()
+                        HStack {
+                            buttons
+                        }
+                        
+                    }
+                    
+                }
+                .padding(12)
+                .background(
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(.white)
+                )
+                .frame(width: UIScreen.main.bounds.width - 2 * horizontalOffset)
+                
+                CommentPolygonShape()
                     .fill(.white)
-            )
-            .frame(width: UIScreen.main.bounds.width - 2 * horizontalOffset)
-            
-            CommentPolygonShape()
-                .fill(.white)
-                .frame(width: 20, height: 10)
+                    .frame(width: 20, height: 10)
+            }
+            .offset(y: -frame.height/2)
         }
     }
+        
     
     var onboardingSliderImage: ImageResource {
         onboardingStep == 1 ? .onboardingSlider1 : .onboardingSlider2

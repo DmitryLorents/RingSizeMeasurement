@@ -15,7 +15,7 @@ extension View {
         onboardingStep: Binding<Int>,
         enabled: Bool,
         text: String,
-        yOffset: CGFloat = 20,
+        yOffset: CGFloat,
         maxCommentHeight: CGFloat,
         maskContent: () -> some View
     ) -> some View {
@@ -34,8 +34,9 @@ extension View {
                             text: text,
                             maxOnboardingSteps: maxOnboardingSteps
                            )
+                .offset(y: -yOffset )
                     .frame(minHeight: maxCommentHeight)
-                    .offset(x: 0, y: -(maxCommentHeight / 2 + yOffset) )
+//
                     .opacity(enabled ? 1 : 0)
                     .zIndex(enabled ? 1 : 0)
                 
