@@ -14,8 +14,9 @@ struct CommentView: View {
     var maxOnboardingSteps: Int
     var closeButtonAction: (() -> Void)?
     
-    init(horizontalOffset: CGFloat = 20,
-         onboardingStep: Binding<Int>,
+    init(
+        onboardingStep: Binding<Int>,
+        horizontalOffset: CGFloat = 20,
          text: String,
          maxOnboardingSteps: Int,
          closeButtonAction: (() -> Void)? = nil
