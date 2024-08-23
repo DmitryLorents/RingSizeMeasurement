@@ -31,20 +31,14 @@ struct CommentView: View {
     
     
     var body: some View {
-        ZStack {
-            GeometryReader { geometry -> Color in
-                Task {
-                    frame = geometry.frame(in: .local)
-                }
-                return Color.clear
-            }
+           
             VStack(spacing: 0) {
                 
                 VStack {
                     
                     HStack(alignment: .top) {
                         
-                        Text(text)
+                        Text(text + "\(frame.height)")
                             .multilineTextAlignment(.leading)
                             .padding(.trailing, 10)
                         
@@ -79,8 +73,15 @@ struct CommentView: View {
                     .fill(.white)
                     .frame(width: 20, height: 10)
             }
+            .background(
+                GeometryReader { geometry -> Color in
+                    Task {
+                        frame = geometry.frame(in: .local)
+                    }
+                    return Color.clear
+                }
+            )
             .offset(y: -frame.height/2)
-        }
     }
         
     

@@ -6,13 +6,26 @@
 //
 import SwiftUI
 
-struct SizeChangeView: View {
+struct SliderStepperView: View {
     
     @Binding var size: Float
     var sizeValues: [Float]
     let step: Float
     let increaseAction: () -> Void
     let decreaseAction: () -> Void
+    
+    init(size: Binding<Float>,
+         sizeValues: [Float],
+         step: Float,
+         increaseAction: @escaping () -> Void,
+         decreaseAction: @escaping () -> Void
+    ) {
+        _size = size
+        self.sizeValues = sizeValues
+        self.step = step
+        self.increaseAction = increaseAction
+        self.decreaseAction = decreaseAction
+    }
     
     private var minSize: Float {
         sizeValues.min() ?? 0

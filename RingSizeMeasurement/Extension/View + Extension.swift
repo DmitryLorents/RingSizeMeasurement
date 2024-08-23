@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Combine
 
 extension View {
     
@@ -19,34 +18,31 @@ extension View {
         maxCommentHeight: CGFloat,
         maskContent: () -> some View
     ) -> some View {
-        return self
-            .overlay(
-                Color.black.opacity(0.4)
-                    .reverseMask {
-                        maskContent()
-                    }
-                    .frame(width: 10_000, height: 10_000)
-                    .opacity(enabled ? 1 : 0)
+        overlay(
+            Color.black.opacity(0.4)
+                .reverseMask {
+                    maskContent()
+                }
+                .frame(width: 10000, height: 10000)
+                .opacity(enabled ? 1 : 0)
+        )
+        .zIndex(enabled ? 1 : 0)
+        .overlay(
+            CommentView(
+                onboardingStep: onboardingStep,
+                text: text,
+                maxOnboardingSteps: maxOnboardingSteps
             )
+            .offset(y: -yOffset)
+            .frame(minHeight: maxCommentHeight)
+            .opacity(enabled ? 1 : 0)
             .zIndex(enabled ? 1 : 0)
-            .overlay(
-                CommentView(onboardingStep: onboardingStep,
-                            text: text,
-                            maxOnboardingSteps: maxOnboardingSteps
-                           )
-                .offset(y: -yOffset )
-                    .frame(minHeight: maxCommentHeight)
-//
-                    .opacity(enabled ? 1 : 0)
-                    .zIndex(enabled ? 1 : 0)
-                
-            )
+        )
     }
-    
-    
-    @inlinable func reverseMask<Mask: View>(
+
+    @inlinable func reverseMask(
         alignment: Alignment = .center,
-        @ViewBuilder _ mask: () -> Mask
+        @ViewBuilder _ mask: () -> some View
     ) -> some View {
         self.mask(
             ZStack {

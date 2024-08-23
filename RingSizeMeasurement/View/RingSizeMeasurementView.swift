@@ -38,21 +38,25 @@ struct RingSizeMeasurementView: View {
             let safeAreaTop = geometry.safeAreaInsets.top
             
             var maxCommentHeight: CGFloat {
-                switch selectedTab {
+                
+                let maskHeight = onboardingStep == 1 ? roundMaskHeight : sliderMaskHeight
+                let height: CGFloat = switch selectedTab {
                 case 0:
-                    geometry.frame(in: .global).height / 2 
+                    geometry.frame(in: .global).height / 2
                     - safeAreaTop
                     - 2 * commentMaxHeightVerticalInset
-                    - (roundMaskHeight / 2)
+                    - (maskHeight / 2)
                 case 1:
-                    geometry.frame(in: .global).height / 2 
+                    geometry.frame(in: .global).height / 2
                     - safeAreaTop 
                     - 2 * commentMaxHeightVerticalInset
                     - (viewModel.sizeInMM() / 2)
                 default:
                     0
                 }
-            } 
+                
+                return height
+            }
             
             
             VStack() {
@@ -99,7 +103,7 @@ struct RingSizeMeasurementView: View {
                 
                 Text("размер")
                 
-                SizeChangeView(
+                SliderStepperView(
                     size: $viewModel.model.size,
                     sizeValues: viewModel.model.sizeValues,
                     step: 0.5

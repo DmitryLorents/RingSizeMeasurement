@@ -17,7 +17,7 @@
 		D98C55832C6CBC1D0078A80E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D98C55822C6CBC1D0078A80E /* Assets.xcassets */; };
 		D98C55862C6D25AA0078A80E /* FingerMeasurementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55852C6D25AA0078A80E /* FingerMeasurementView.swift */; };
 		D98C55882C6D28630078A80E /* DiameterMeasurementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55872C6D28630078A80E /* DiameterMeasurementView.swift */; };
-		D98C558A2C6DD2F20078A80E /* SizeChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55892C6DD2F20078A80E /* SizeChangeView.swift */; };
+		D98C558A2C6DD2F20078A80E /* SliderStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55892C6DD2F20078A80E /* SliderStepperView.swift */; };
 		D98C558C2C6DF0C50078A80E /* CommentPolygonShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C558B2C6DF0C50078A80E /* CommentPolygonShape.swift */; };
 		D98C55912C6E1A580078A80E /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55902C6E1A580078A80E /* CommentView.swift */; };
 		D98C55932C6E26280078A80E /* OnboardingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C55922C6E26280078A80E /* OnboardingButtonView.swift */; };
@@ -39,7 +39,7 @@
 		D98C55822C6CBC1D0078A80E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D98C55852C6D25AA0078A80E /* FingerMeasurementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerMeasurementView.swift; sourceTree = "<group>"; };
 		D98C55872C6D28630078A80E /* DiameterMeasurementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiameterMeasurementView.swift; sourceTree = "<group>"; };
-		D98C55892C6DD2F20078A80E /* SizeChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeChangeView.swift; sourceTree = "<group>"; };
+		D98C55892C6DD2F20078A80E /* SliderStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderStepperView.swift; sourceTree = "<group>"; };
 		D98C558B2C6DF0C50078A80E /* CommentPolygonShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentPolygonShape.swift; sourceTree = "<group>"; };
 		D98C55902C6E1A580078A80E /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		D98C55922C6E26280078A80E /* OnboardingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingButtonView.swift; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 			children = (
 				D98C55852C6D25AA0078A80E /* FingerMeasurementView.swift */,
 				D98C55872C6D28630078A80E /* DiameterMeasurementView.swift */,
-				D98C55892C6DD2F20078A80E /* SizeChangeView.swift */,
+				D98C55892C6DD2F20078A80E /* SliderStepperView.swift */,
 				D98C558F2C6DF9F20078A80E /* Comment */,
 			);
 			path = SubViews;
@@ -266,7 +266,7 @@
 				D98C55952C6E27A90078A80E /* ButtonType.swift in Sources */,
 				D98C55932C6E26280078A80E /* OnboardingButtonView.swift in Sources */,
 				D98C55752C6B80340078A80E /* RingSizeMeasurementViewModel.swift in Sources */,
-				D98C558A2C6DD2F20078A80E /* SizeChangeView.swift in Sources */,
+				D98C558A2C6DD2F20078A80E /* SliderStepperView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
