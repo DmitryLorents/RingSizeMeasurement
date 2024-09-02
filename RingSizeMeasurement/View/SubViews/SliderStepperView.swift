@@ -8,31 +8,38 @@ import SwiftUI
 
 struct SliderStepperView: View {
     
-    @Binding var size: Float
-    var sizeValues: [Float]
-    let step: Float
-    let increaseAction: () -> Void
-    let decreaseAction: () -> Void
+    @Binding var value: Float
+    private let values: [Float]
+    var accentColor: Color
     
-    init(size: Binding<Float>,
-         sizeValues: [Float],
-         step: Float,
-         increaseAction: @escaping () -> Void,
-         decreaseAction: @escaping () -> Void
+    private var minValue: Float {
+        values.min() ?? 0.0
+    }
+    private var maxValue: Float {
+        values.max() ?? 0.0
+    }
+    
+    private var increaseAction: () -> Void  {
+        { let index = values.firstIndex(where: { $0 == value}) ?? 0
+            if index < values.count - 1 {
+                value = values[index + 1]
+            } }
+    }
+    
+    private var decreaseAction: () -> Void {
+        { let index = values.firstIndex(where: { $0 == value}) ?? 0
+            if index > 0 {
+                value = values[index - 1]
+            }}
+    }
+    
+    init(value: Binding<Float>,
+         in values: [Float],
+         accentColor: Color = .pink
     ) {
-        _size = size
-        self.sizeValues = sizeValues
-        self.step = step
-        self.increaseAction = increaseAction
-        self.decreaseAction = decreaseAction
-    }
-    
-    private var minSize: Float {
-        sizeValues.min() ?? 0
-    }
-    
-    private var maxSize: Float {
-        sizeValues.max() ?? 0
+        _value = value
+        self.values = values
+        self.accentColor = accentColor
     }
     
     var body: some View {
@@ -47,8 +54,8 @@ struct SliderStepperView: View {
                     .frame(width: 40, height: 40)
                     .overlay(Image(.minus))
             })
-            Slider(value: $size, in: minSize...maxSize, step: step)
-                .accentColor(.pinkApp)
+            DiscreteSlider(value: $value, in: values, accentColor: accentColor)
+                
             
             Button(action: {
                 increaseAction()
@@ -62,10 +69,5 @@ struct SliderStepperView: View {
         
         
     }
-    
-//    private func formatSize() -> String {
-//        let divisionReminder = size.truncatingRemainder(dividingBy: 1) == 0 ? 0 : 1
-//        return String(format: "%0.\(divisionReminder)f", size)
-//    }
+
 }
-// Link to Slider implementation with array of values https://stackoverflow.com/questions/68598052/is-there-a-way-to-define-discrete-steps-for-a-slider
