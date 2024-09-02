@@ -11,11 +11,13 @@ import UIKit
 struct RingSizeMeasurementView: View {
     @StateObject private var viewModel = RingSizeMeasurementViewModel()
     @State private var selectedTab = 0
-    @State private var onboardingStep = 0
+    @State private var current: Float = 15
+//    @State private var onboardingStep = 0
     private let roundMaskHeight: CGFloat = 280
     private let sliderMaskHeight: CGFloat = 60
     private let commentMaxHeightVerticalInset: CGFloat = 20
     private let onboardingCommentVerticalOffset: CGFloat = 10
+    private let values: [Float] = [12.0, 12.5, 13, 13.5, 15, 15.3, 16, 16.5, 17, 18]
     private var maxOnboardingSteps: Int {
         selectedTab == 0 ? 2 : 1
     }
@@ -39,7 +41,7 @@ struct RingSizeMeasurementView: View {
             
             var maxCommentHeight: CGFloat {
                 
-                let maskHeight = onboardingStep == 1 ? roundMaskHeight : sliderMaskHeight
+                let maskHeight = viewModel.onboardingStep == 1 ? roundMaskHeight : sliderMaskHeight
                 let height: CGFloat = switch selectedTab {
                 case 0:
                     geometry.frame(in: .global).height / 2
@@ -61,6 +63,18 @@ struct RingSizeMeasurementView: View {
             
             VStack() {
                 
+                HStack {
+                    Image(.arrowLeft)
+                    Spacer()
+                    Text("Screen title")
+                        .bold()
+                    Spacer()
+                    Button(action: {}, label: {
+                        Image(.infoButton)
+                    })
+                }
+                .padding(.horizontal, 20)
+                
                 Picker("", selection: $selectedTab) {
                     // TODO: - make indexation by index.
                     ForEach(viewModel.model.tabs, id: \.self) { tabName in
@@ -71,7 +85,21 @@ struct RingSizeMeasurementView: View {
                 }
                 .pickerStyle(.segmented)
                 .padding(.horizontal, 20)
-                
+                Group {
+                    DiscreteSlider(value: $current, in: values)
+                   
+                    Button(action: {
+                        let index = values.firstIndex(where: { $0 == current}) ?? 0
+                        if index > 0 {
+                            current = values[index - 1]
+                        }
+                    }, label: {
+                        Text("Button")
+                    })
+                        
+                    Text("\(current)")
+                }
+                .padding(.horizontal, 20)
                 Text("Отрегулируйте красную область, чтобы она заняла все внутреннее пространство кольца. Onboarding step: ")
                     .padding(.vertical, 16)
                     .padding(.horizontal, 20)
@@ -79,16 +107,16 @@ struct RingSizeMeasurementView: View {
                 
                 Spacer()
                 measurementView
-                    .opacity(onboardingStep != 0 && selectedTab == 0 ? 0 : 1)
+                    .opacity(viewModel.onboardingStep != 0 && selectedTab == 0 ? 0 : 1)
                     .padding(.horizontal, 0)
                     .overlay(
                         Image(.ring)
-                            .opacity(onboardingStep != 0 && selectedTab == 0 ? 1 : 0)
+                            .opacity(viewModel.onboardingStep != 0 && selectedTab == 0 ? 1 : 0)
                     )
                     .onboarding(
                         maxOnboardingSteps: maxOnboardingSteps,
-                        onboardingStep: $onboardingStep,
-                        enabled: onboardingStep == 1,
+                        onboardingStep: $viewModel.onboardingStep,
+                        enabled: viewModel.onboardingStep == 1,
                         text: getOnboardingText(),
                         yOffset: firstCommentOnboardingOffset,
                         maxCommentHeight: maxCommentHeight
@@ -104,22 +132,24 @@ struct RingSizeMeasurementView: View {
                 Text("размер")
                 
                 SliderStepperView(
-                    size: $viewModel.model.size,
-                    sizeValues: viewModel.model.sizeValues,
-                    step: 0.5
-                ) {
-                    viewModel.increaseSize()
-                } decreaseAction: {
-                    viewModel.decreaseSize()
-                }
+                    value: $viewModel.model.size,
+                    in: viewModel.model.sizeValues,
+                    accentColor: .pinkApp
+//                    step: 0.5
+                )
+//                {
+//                    viewModel.increaseSize()
+//                } decreaseAction: {
+//                    viewModel.decreaseSize()
+//                }
                 .padding(.horizontal, 20)
                 .valueChanged(value: viewModel.model.size, onChange: { _ in
                     UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
                 })
                 .onboarding(
                     maxOnboardingSteps: maxOnboardingSteps,
-                    onboardingStep: $onboardingStep,
-                    enabled: onboardingStep == 2 && selectedTab != 1,
+                    onboardingStep: $viewModel.onboardingStep,
+                    enabled: viewModel.onboardingStep == 2 && selectedTab != 1,
                     text: getOnboardingText(),
                     yOffset: secondCommentOnboardingOffset,
                     maxCommentHeight: maxCommentHeight
@@ -129,7 +159,7 @@ struct RingSizeMeasurementView: View {
                 }
                 
                 Button(action: {
-                    onboardingStep = (onboardingStep + 1) % (maxOnboardingSteps + 1)
+                    viewModel.onboardingStep = (viewModel.onboardingStep + 1) % (maxOnboardingSteps + 1)
                     print("Apply size \(viewModel.formatSize())")
                 }, label: {
                     Spacer()
@@ -173,7 +203,7 @@ struct RingSizeMeasurementView: View {
     }
     
     private func getOnboardingText() -> String {
-      let index =  switch (onboardingStep, maxOnboardingSteps) {
+        let index =  switch (viewModel.onboardingStep, maxOnboardingSteps) {
         case (1,2):
             0
       case (2,2):
@@ -185,6 +215,20 @@ struct RingSizeMeasurementView: View {
         let texts = viewModel.model.onboardingTexts
         guard index < texts.count else {return ""}
         return texts[index]
+    }
+    
+    private var navigationBar: some View {
+        HStack {
+            Image(.arrowLeft)
+            Spacer()
+            Text("Screen title")
+                .bold()
+            Spacer()
+            Button(action: {}, label: {
+                Image(.infoButton)
+            })
+        }
+        .frame(height: 48)
     }
 }
 
