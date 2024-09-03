@@ -16,7 +16,8 @@ extension View {
         text: String,
         yOffset: CGFloat,
         maxCommentHeight: CGFloat,
-        maskContent: () -> some View
+        maskContent: () -> some View,
+       @ViewBuilder buttons: @escaping () -> some View
     ) -> some View {
         overlay(
             Color.black.opacity(0.4)
@@ -31,7 +32,8 @@ extension View {
             CommentView(
                 onboardingStep: onboardingStep,
                 text: text,
-                maxOnboardingSteps: maxOnboardingSteps
+                maxOnboardingSteps: maxOnboardingSteps,
+                buttons: buttons
             )
             .offset(y: -yOffset)
             .frame(minHeight: maxCommentHeight)

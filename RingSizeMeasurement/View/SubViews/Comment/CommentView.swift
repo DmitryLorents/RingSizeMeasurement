@@ -7,26 +7,29 @@
 
 import SwiftUI
 
-struct CommentView: View {
-    @Binding private var onboardingStep: Int
-    var horizontalOffset: CGFloat
-    let text: String
-    var maxOnboardingSteps: Int
-    var closeButtonAction: (() -> Void)?
+struct CommentView<Buttons: View>: View {
     @State private var frame: CGRect = .zero
+    @Binding private var onboardingStep: Int
+    let horizontalOffset: CGFloat
+    let text: String
+    let maxOnboardingSteps: Int
+    let closeButtonAction: (() -> Void)?
+    private let buttonsContent: () -> Buttons
     
     init(
         onboardingStep: Binding<Int>,
         horizontalOffset: CGFloat = 20,
          text: String,
          maxOnboardingSteps: Int,
-         closeButtonAction: (() -> Void)? = nil
+         closeButtonAction: (() -> Void)? = nil,
+        @ViewBuilder buttons: @escaping () -> Buttons
     ) {
         self.horizontalOffset = horizontalOffset
         self.text = text
         self.maxOnboardingSteps = maxOnboardingSteps
         _onboardingStep = onboardingStep
         self.closeButtonAction = closeButtonAction
+        buttonsContent = buttons
     }
     
     
@@ -38,7 +41,7 @@ struct CommentView: View {
                     
                     HStack(alignment: .top) {
                         
-                        Text(text + "\(frame.height)")
+                        Text(text)
                             .multilineTextAlignment(.leading)
                             .padding(.trailing, 10)
                         
@@ -56,7 +59,8 @@ struct CommentView: View {
                             .opacity(maxOnboardingSteps == 1 ? 0 : 1)
                         Spacer()
                         HStack {
-                            buttons
+//                            buttons
+                            buttonsContent()
                         }
                         
                     }
@@ -92,6 +96,10 @@ struct CommentView: View {
     var darkButtonText: String {
         maxOnboardingSteps == onboardingStep ? "Понятно" : "Далее"
     }
+//    var buttonsFromContent: some View {
+//        buttonsContent
+//            
+//    }
  
     @ViewBuilder var buttons: some View {
         switch onboardingStep {

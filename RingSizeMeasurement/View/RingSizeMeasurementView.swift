@@ -12,6 +12,11 @@ struct RingSizeMeasurementView: View {
     @StateObject private var viewModel = RingSizeMeasurementViewModel()
     @State private var selectedTab = 0
     @State private var current: Float = 15
+    @State private var scale: CGFloat = 1
+    @State private var scaleValue: CGFloat = 0
+    @State private var zoomStep: CGFloat = 0.5
+    let minZoom: CGFloat = 12
+    let maxZoom: CGFloat = 24
 //    @State private var onboardingStep = 0
     private let roundMaskHeight: CGFloat = 280
     private let sliderMaskHeight: CGFloat = 60
@@ -50,7 +55,7 @@ struct RingSizeMeasurementView: View {
                     - (maskHeight / 2)
                 case 1:
                     geometry.frame(in: .global).height / 2
-                    - safeAreaTop 
+                    - safeAreaTop
                     - 2 * commentMaxHeightVerticalInset
                     - (viewModel.sizeInMM() / 2)
                 default:
@@ -87,7 +92,7 @@ struct RingSizeMeasurementView: View {
                 .padding(.horizontal, 20)
                 Group {
                     DiscreteSlider(value: $current, in: values)
-                   
+                    
                     Button(action: {
                         let index = values.firstIndex(where: { $0 == current}) ?? 0
                         if index > 0 {
@@ -96,7 +101,7 @@ struct RingSizeMeasurementView: View {
                     }, label: {
                         Text("Button")
                     })
-                        
+                    
                     Text("\(current)")
                 }
                 .padding(.horizontal, 20)
@@ -107,6 +112,9 @@ struct RingSizeMeasurementView: View {
                 
                 Spacer()
                 measurementView
+//                        .accessibilityZoomAction { action in
+//                            <#code#>
+//                        }
                     .opacity(viewModel.onboardingStep != 0 && selectedTab == 0 ? 0 : 1)
                     .padding(.horizontal, 0)
                     .overlay(
@@ -122,6 +130,22 @@ struct RingSizeMeasurementView: View {
                         maxCommentHeight: maxCommentHeight
                     ) {
                         firstStepOnboardingMask
+                    } buttons: {
+                        OnboardingButtonView(
+                            action: {
+                                //                                previousButtonAction()
+                            },
+                            label: "Назад",
+                            buttonType: .light
+                        )
+                        
+                        OnboardingButtonView(
+                            action: {
+                                //                                nextButtonAction()
+                            },
+                            label: "Понятно",
+                            buttonType: .dark
+                        )
                     }
                 Spacer()
                 
@@ -135,13 +159,7 @@ struct RingSizeMeasurementView: View {
                     value: $viewModel.model.size,
                     in: viewModel.model.sizeValues,
                     accentColor: .pinkApp
-//                    step: 0.5
                 )
-//                {
-//                    viewModel.increaseSize()
-//                } decreaseAction: {
-//                    viewModel.decreaseSize()
-//                }
                 .padding(.horizontal, 20)
                 .valueChanged(value: viewModel.model.size, onChange: { _ in
                     UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
@@ -156,6 +174,22 @@ struct RingSizeMeasurementView: View {
                 ) {
                     RoundedRectangle(cornerRadius: 10)
                         .frame(width: UIScreen.main.bounds.width - 24, height: sliderMaskHeight)
+                } buttons: {
+                    OnboardingButtonView(
+                        action: {
+                            //                                previousButtonAction()
+                        },
+                        label: "Назад",
+                        buttonType: .light
+                    )
+                    
+                    OnboardingButtonView(
+                        action: {
+                            //                                nextButtonAction()
+                        },
+                        label: "Понятно",
+                        buttonType: .dark
+                    )
                 }
                 
                 Button(action: {
@@ -175,9 +209,27 @@ struct RingSizeMeasurementView: View {
                 .padding(.vertical, 28)
                 .padding(.horizontal, 20)
                 
-            }
+            
+                
+               
+        }
+//            .gesture(
+//                MagnificationGesture()
+//                .onChanged({ updateScale($0)
+//                })
+//            )
             
         }
+        .background(
+            Color.white.opacity(0.0001)
+                .gesture(
+                    MagnificationGesture()
+                    .onChanged({ 
+                        updateScale($0)
+                    })
+                )
+        )
+        
     }
     
     @ViewBuilder var firstStepOnboardingMask: some View {
@@ -230,6 +282,32 @@ struct RingSizeMeasurementView: View {
         }
         .frame(height: 48)
     }
+    
+    private func updateScale(_ scale: MagnificationGesture.Value) {
+        
+        let zoomIn = scale > scaleValue ? false : true
+        let scaleDifference = abs(scale - scaleValue)
+        let divider = scale / scaleValue
+        let scaleCalculated = min(max(scale.magnitude, 0), 20)
+        scaleValue = scaleCalculated
+//        print("Scale difference", scaleDifference)
+//        print("Divider", divider)
+//        print("magnitude", scale.magnitude )
+        print("scaleValue", scale )
+        if true {
+            if zoomIn {
+                viewModel.decreaseSize()
+            } else {
+                viewModel.increaseSize()
+            }
+        }
+        else {
+//            print("Scale difference", scaleDifference)
+//            print("Divider", divider)
+//            print("magnitude", scale.magnitude )
+//            print("scaleValue", scale )
+        }
+     }
 }
 
 #Preview {
