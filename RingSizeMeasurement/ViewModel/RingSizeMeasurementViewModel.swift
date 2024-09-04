@@ -12,6 +12,8 @@ final class RingSizeMeasurementViewModel: ObservableObject {
     @Published var onboardingStep: Int = 0
     @Published var magnificationCounter = 0
     
+    
+    
     func increaseSize() {
         if model.size < model.maxValue {
             model.size += model.sizeStep

@@ -112,9 +112,6 @@ struct RingSizeMeasurementView: View {
                 
                 Spacer()
                 measurementView
-//                        .accessibilityZoomAction { action in
-//                            <#code#>
-//                        }
                     .opacity(viewModel.onboardingStep != 0 && selectedTab == 0 ? 0 : 1)
                     .padding(.horizontal, 0)
                     .overlay(
@@ -220,6 +217,7 @@ struct RingSizeMeasurementView: View {
                 .gesture(
                     MagnificationGesture()
                     .onChanged({ 
+                        guard isMagnificationGestureEnabled else {return}
                         updateScale($0)
                     })
                 )
@@ -284,16 +282,17 @@ struct RingSizeMeasurementView: View {
         scaleValue = scale
         viewModel.magnificationCounter += 1
 
-        if viewModel.magnificationCounter > 7 {
+        guard viewModel.magnificationCounter > 7 else {return}
             viewModel.magnificationCounter = 0
-            if zoomIn {
-                viewModel.decreaseSize()
-            } else {
-                viewModel.increaseSize()
-            }
+        zoomIn ? viewModel.decreaseSize() : viewModel.increaseSize()
+            
         }
+    
+    private var isMagnificationGestureEnabled: Bool {
+        selectedTab == 0
+    }
 
-     }
+
 }
 
 #Preview {
