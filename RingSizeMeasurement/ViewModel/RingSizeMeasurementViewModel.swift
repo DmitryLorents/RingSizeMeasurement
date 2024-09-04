@@ -10,6 +10,7 @@ import UIKit
 final class RingSizeMeasurementViewModel: ObservableObject {
     @Published var model: RingMeasurementModel = RingMeasurementModel.createStubModel()
     @Published var onboardingStep: Int = 0
+    @Published var magnificationCounter = 0
     
     func increaseSize() {
         if model.size < model.maxValue {

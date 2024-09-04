@@ -213,11 +213,6 @@ struct RingSizeMeasurementView: View {
                 
                
         }
-//            .gesture(
-//                MagnificationGesture()
-//                .onChanged({ updateScale($0)
-//                })
-//            )
             
         }
         .background(
@@ -286,27 +281,18 @@ struct RingSizeMeasurementView: View {
     private func updateScale(_ scale: MagnificationGesture.Value) {
         
         let zoomIn = scale > scaleValue ? false : true
-        let scaleDifference = abs(scale - scaleValue)
-        let divider = scale / scaleValue
-        let scaleCalculated = min(max(scale.magnitude, 0), 20)
-        scaleValue = scaleCalculated
-//        print("Scale difference", scaleDifference)
-//        print("Divider", divider)
-//        print("magnitude", scale.magnitude )
-        print("scaleValue", scale )
-        if true {
+        scaleValue = scale
+        viewModel.magnificationCounter += 1
+
+        if viewModel.magnificationCounter > 7 {
+            viewModel.magnificationCounter = 0
             if zoomIn {
                 viewModel.decreaseSize()
             } else {
                 viewModel.increaseSize()
             }
         }
-        else {
-//            print("Scale difference", scaleDifference)
-//            print("Divider", divider)
-//            print("magnitude", scale.magnitude )
-//            print("scaleValue", scale )
-        }
+
      }
 }
 
