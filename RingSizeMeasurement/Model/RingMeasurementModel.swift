@@ -42,7 +42,7 @@ struct RingMeasurementModel {
             sizeStep: 0.5,
             onboardingStep: 0,
             maxOnboardingSteps: 2,
-            sizeValues: Array(stride(from: 12, to: 24, by: 0.5))
+            sizeValues: Array(stride(from: 12, to: 24.5, by: 0.5))
         )
     }
 }

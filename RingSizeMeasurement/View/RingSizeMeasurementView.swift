@@ -17,7 +17,6 @@ struct RingSizeMeasurementView: View {
     @State private var zoomStep: CGFloat = 0.5
     let minZoom: CGFloat = 12
     let maxZoom: CGFloat = 24
-//    @State private var onboardingStep = 0
     private let roundMaskHeight: CGFloat = 280
     private let sliderMaskHeight: CGFloat = 60
     private let commentMaxHeightVerticalInset: CGFloat = 20
@@ -42,7 +41,7 @@ struct RingSizeMeasurementView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            let safeAreaTop = geometry.safeAreaInsets.top
+//            let safeAreaTop = geometry.safeAreaInsets.top
             
             var maxCommentHeight: CGFloat {
                 
@@ -50,12 +49,12 @@ struct RingSizeMeasurementView: View {
                 let height: CGFloat = switch selectedTab {
                 case 0:
                     geometry.frame(in: .global).height / 2
-                    - safeAreaTop
+//                    - safeAreaTop
                     - 2 * commentMaxHeightVerticalInset
                     - (maskHeight / 2)
                 case 1:
                     geometry.frame(in: .global).height / 2
-                    - safeAreaTop
+//                    - safeAreaTop
                     - 2 * commentMaxHeightVerticalInset
                     - (viewModel.sizeInMM() / 2)
                 default:
@@ -68,16 +67,7 @@ struct RingSizeMeasurementView: View {
             
             VStack() {
                 
-                HStack {
-                    Image(.arrowLeft)
-                    Spacer()
-                    Text("Screen title")
-                        .bold()
-                    Spacer()
-                    Button(action: {}, label: {
-                        Image(.infoButton)
-                    })
-                }
+                navigationBar
                 .padding(.horizontal, 20)
                 
                 Picker("", selection: $selectedTab) {
@@ -90,22 +80,9 @@ struct RingSizeMeasurementView: View {
                 }
                 .pickerStyle(.segmented)
                 .padding(.horizontal, 20)
-                Group {
-                    DiscreteSlider(value: $current, in: values)
-                    
-                    Button(action: {
-                        let index = values.firstIndex(where: { $0 == current}) ?? 0
-                        if index > 0 {
-                            current = values[index - 1]
-                        }
-                    }, label: {
-                        Text("Button")
-                    })
-                    
-                    Text("\(current)")
-                }
-                .padding(.horizontal, 20)
-                Text("Отрегулируйте красную область, чтобы она заняла все внутреннее пространство кольца. Onboarding step: ")
+        
+                Text("Отрегулируйте красную область, чтобы она заняла все внутреннее пространство кольца.")
+                    .multilineTextAlignment(.center)
                     .padding(.vertical, 16)
                     .padding(.horizontal, 20)
                 
@@ -190,8 +167,10 @@ struct RingSizeMeasurementView: View {
                 }
                 
                 Button(action: {
-                    viewModel.onboardingStep = (viewModel.onboardingStep + 1) % (maxOnboardingSteps + 1)
-                    print("Apply size \(viewModel.formatSize())")
+//                    viewModel.onboardingStep = (viewModel.onboardingStep + 1) % (maxOnboardingSteps + 1)
+                    print("NativeScale: \(UIScreen.main.nativeScale)")
+                    print("Scale: \(UIScreen.main.scale)")
+                    print("Size:", viewModel.model.size, "Value: ", viewModel.sizeInMM())
                 }, label: {
                     Spacer()
                     Text("Применить размер")
@@ -239,9 +218,9 @@ struct RingSizeMeasurementView: View {
     @ViewBuilder var measurementView: some View {
         switch selectedTab {
         case 0 :
-            DiameterMeasurementView(size: $viewModel.model.sizeInMM)
+            DiameterMeasurementView(size: $viewModel.model.sizeInMM, isImageVisible: $viewModel.isImageVisible)
         case 1:
-            FingerMeasurementView(size: $viewModel.model.sizeInMM)
+            FingerMeasurementView(size: $viewModel.model.sizeInMM, isImageVisible: $viewModel.isImageVisible)
         default:
             EmptyView()
         }
@@ -264,7 +243,15 @@ struct RingSizeMeasurementView: View {
     
     private var navigationBar: some View {
         HStack {
-            Image(.arrowLeft)
+            Button(action: {
+                print("Back")
+            }, label: {
+                Color.clear
+                    .frame(width: 50, height: 50)
+                    .overlay(
+                SwiftUI.Image(.arrowLeft)
+                        )
+            })
             Spacer()
             Text("Screen title")
                 .bold()
